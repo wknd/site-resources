@@ -1,0 +1,61 @@
+.post-head-image {
+  vertical-align: top;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: auto;
+}
+.post-title {
+  position: absolute;
+  display: inline-block;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
+
+  bottom: 0px;
+  margin: 0px;
+  left: 0px;
+  right: 0px;
+  @include relative-font-size(2);
+  color: $flash1;
+  background-color: transparentize($background, $transparent);
+  padding: ($spacing-unit / 4) ($spacing-unit / 2) ($spacing-unit / 4);
+
+  @include on-tablet {
+    @include relative-font-size(2.25);
+  }
+  @include on-laptop {
+    @include relative-font-size(2.625);
+  }
+}
+
+
+.post-date {
+  display: inline-block;
+  background-color: transparentize($flash1, $transparent);
+  color: $background;
+  position: absolute;
+  top: 0px;
+  bottom: auto;
+  left: auto;
+  right: 0px;
+  padding: ($spacing-unit / 6) ($spacing-unit / 3) ($spacing-unit / 6);
+}
+
+.post-author {
+  display: inline-block;
+  background-color: transparentize($background, $transparent);
+  color: $foreground;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: auto;
+  right: auto;
+  padding: ($spacing-unit / 6) ($spacing-unit / 3) ($spacing-unit / 6);
+  a {
+    text-decoration: none;
+    color: $flash1;
+  }
+}
+

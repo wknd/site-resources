@@ -1,0 +1,16 @@
+<footer class="site-footer">
+  <div class="wrapper">
+    <a href="{{ "/" | relative_url }}">{{- site.title | escape }}</a>{% if site.github %} is created and maintained by {% include icon-github.html %} and is available on <a href="{{ site.github.repository_url }}">github.</a>
+    {%- endif -%}<br />
+  </div>
+{%- if layout.origin == "index" -%}
+<link rel="stylesheet" href="{{ "/assets/index.css" | relative_url }}">
+{%- elsif layout.origin == "post" -%}
+<link rel="stylesheet" href="{{ "/assets/post.css" | relative_url }}">
+{%- elsif layout.origin == "page" -%}
+<link rel="stylesheet" href="{{ "/assets/page.css" | relative_url }}">
+{%- else -%}
+<link rel="stylesheet" href="{{ "/assets/default.css" | relative_url }}">
+{%- endif -%}
+
+</footer>

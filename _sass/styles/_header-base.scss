@@ -1,0 +1,85 @@
+.site-header {
+  display: block;
+  border-bottom: 1px solid $flash1;
+  background-color: $background-light;
+  min-height: $spacing-unit * 1.8;
+  position: relative;
+}
+.site-title {
+  @include relative-font-size(1.625);
+  font-weight: 300;
+  line-height: $base-line-height * $base-font-size * 2.25;
+  letter-spacing: -1px;
+  margin-bottom: 0px;
+  float: left;
+  color: $foreground;
+  text-decoration: none;
+  &:visited { 
+    color: $foreground;
+  }    
+}
+.site-nav {
+  float: right;
+  line-height: $base-line-height * $base-font-size * 2.25;
+  z-index: 2;
+  .nav-trigger {
+    display: none;
+  }
+  .menu-icon {
+    display: none;
+  }
+  .page-link {
+    color: $foreground;
+    line-height: $base-line-height;
+    text-decoration: none;
+    
+    // gaps between nav items, but not the last one
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+  @include on_phone {
+    position: absolute;
+    top: 9px;
+    right: $spacing-unit / 2;
+    background-color: $background-light;
+    border: 1px solid $foreground;
+    @include border-radius(5px);
+    text-align: right;
+    label[for="nav-trigger"] {
+      display: block;
+      float: right;
+      width:36px;
+      height: 36px;
+      z-index: 2;
+      cursor: pointer;
+    }
+    .menu-icon {
+      display: block;
+      float: right;
+      width: 36px;
+      height: 26px;
+      line-height: 0;
+      padding-top: 10px;
+      text-align: center;
+    }
+    input ~ .trigger {
+      clear: both;
+      display: none;
+    }
+    input:checked ~ .trigger {
+      display: block;
+      padding-bottom: 5px;
+    }
+
+    .page-link {
+      display: block;
+      padding: 5px 10px;
+      &:not(:last-child) {
+        margin-right: 0;
+      }
+      margin-left: 20px;
+    }
+  }
+}

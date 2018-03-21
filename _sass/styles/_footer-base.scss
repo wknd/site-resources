@@ -1,0 +1,15 @@
+.site-footer {
+  display: inline-block;
+  border-top: 1px solid $flash1;
+  background-color: $background-light;
+  color: $foreground;
+  width: 100%;
+  padding-top: $spacing-unit;
+  a {
+    text-decoration: none;
+    color: $foreground;
+
+  }
+  text-align: center;
+  min-height: $spacing-unit * 2;
+}

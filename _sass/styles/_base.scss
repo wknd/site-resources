@@ -1,0 +1,64 @@
+header, section, footer, aside, nav, main, article, figure {
+  display: block;
+}
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  background-color: $background;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper {
+  // spacing of half a unit for small devices on both sides, 1 unit if its big enough
+  max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+  max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $spacing-unit / 2;
+  padding-left: $spacing-unit / 2;
+  @extend %clearfix;
+  @include on_tablet {
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 4));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 4));
+    padding-right: $spacing-unit * 2;
+    padding-left: $spacing-unit * 2;
+  }
+}
+%clearfix:after { 
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.clearfix {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.page-content {
+  flex: 1;
+  display: inline-block;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 0px 0px;
+  padding-bottom: $spacing-unit * 2;
+  background-image: url(/assets/images/global/cross-street_francesco.lorenzetti.jpg);
+  background-attachment: fixed;
+  background-origin: content-box;
+}

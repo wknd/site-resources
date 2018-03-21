@@ -1,0 +1,115 @@
+.home {
+    margin-top: $spacing-unit;
+    background-color: transparentize($background-light, $transparent);
+    padding: $spacing-unit / 2;
+}
+.post-list {
+  list-style: none;
+  display: grid;
+  
+  grid-template-columns: 1fr;
+  grid-gap: ($spacing-unit / 2) ($spacing-unit / 2);
+  @include on-tablet {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $spacing-unit $spacing-unit;
+
+  }
+  @include on-laptop {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: $spacing-unit $spacing-unit;
+
+  }
+  grid-auto-flow: row;
+  justify-items: stretch;
+  justify-content: stretch;
+}
+.post-entry {
+  background-color: $background-light;
+  color: $foreground;
+  height: 100%;
+  .post-image {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0px;
+    list-style: none;
+  }
+  .post-click {
+    flex-grow: 1;
+    display: inline-block;
+    z-index: 1;
+    margin: 0px;
+    padding: 0px;
+  }
+  .post-title {
+    position: absolute;
+    box-sizing: border-box;
+
+    top: 0px;
+    left: 0px;
+    bottom: auto;
+    right: auto;
+    text-decoration: none;
+    @include relative-font-size(1.2);
+    @include on-tablet {
+      @include relative-font-size(1.5);
+    }
+    @include on-laptop {
+      @include relative-font-size(2.0);
+    }
+
+  }
+  .post-date {
+    position: static;
+    float: left;
+  }
+  .post-author {
+    position: static;
+    float: right;
+  }
+ 
+}
+.post-newest {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  @include on-tablet {
+    min-height: 400px;
+    .post-image {
+      height: 100%;
+    }
+    .post-description {
+      display: none !important;
+    }
+    .post-title {
+      @include relative-font-size(2.0);
+    }
+  }
+  @include on-laptop {
+    .post-title {
+      @include relative-font-size(2.4);
+    }
+  }
+}
+.post-featured {
+  grid-column: 1 / -2;
+  grid-row: 2 / 3;
+  @include on-laptop {
+    .post-image {
+      height: 100%;
+    }
+    .post-description {
+      display: none !important;
+    }
+  }
+}
+.post-description {
+  display: block;
+  padding: ($spacing-unit / 3);
+}

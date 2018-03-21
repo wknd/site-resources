@@ -1,0 +1,98 @@
+---
+layout: default
+origin: "index"
+---
+<div class="home">
+  {{ content }}
+  <ul class="post-list">
+{%- if site.posts[0].image.global -%}
+    {%- capture imagePath %}/assets/images/global/{{ site.posts[0].image.name }}{% endcapture -%}
+{%- else -%}
+    {%- capture imagePath %}/assets/images/posts/{{ site.posts[0].date | date: "%Y-%m-%d" }}-{{ site.posts[0].title | slugify }}/{{ site.posts[0].image.name }}{% endcapture -%}
+{%- endif -%}
+{%- assign post = site.posts[0] -%}
+{%- if post.author -%}
+  {%- if site.data.authors[post.author] -%}
+    {%- assign author = site.data.authors[post.author] -%}
+  {%- else -%}
+    {%- assign author = post.author -%}
+  {%- endif -%}
+{%- elsif site.data.authors[site.author] -%}
+  {%- assign author = site.data.authors[site.author] -%}
+{%- else -%}
+  {%- assign author = site.author -%}
+{%- endif -%}
+
+    <li class="post-entry post-newest">
+    <div class="post-image"{% if site.posts[0].image %} style="background-image: url({{ imagePath }});"{% endif %}>
+    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      <a class="post-click" href="{{ site.posts[0].url | relative_url }}"></a>
+      <h2>
+      <a class="post-title" href="{{ site.posts[0].url | relative_url }}">{{ site.posts[0].title | escape }}</a>
+      </h2>
+     
+     <div>
+      <span class="post-date">{{ site.posts[0].date | date: date_format }}</span>
+{% if author.name -%}
+      <div class="post-author">Written by {% if author.page %}<a href="{{ author.page }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}</div>
+{% else %}
+      <div class="post-author">Written by {{ author }}</div>
+{% endif %}
+
+     </div>
+    </div>
+    <div class="post-description">
+{{ site.posts[0].excerpt }}
+    </div>
+</li>
+    {% for post in site.posts offset:1 %}
+{%- if post.image.global -%}
+    {%- capture imagePath %}/assets/images/global/{{ post.image.name }}{% endcapture -%}
+{%- else -%}
+    {%- capture imagePath %}/assets/images/posts/{{ post.date | date: "%Y-%m-%d" }}-{{ post.title | slugify }}/{{ post.image.name }}{% endcapture -%}
+{%- endif -%}
+
+{%- if post.author -%}
+  {%- if site.data.authors[post.author] -%}
+    {%- assign author = site.data.authors[post.author] -%}
+  {%- else -%}
+    {%- assign author = post.author -%}
+  {%- endif -%}
+{%- elsif site.data.authors[site.author] -%}
+  {%- assign author = site.data.authors[site.author] -%}
+{%- else -%}
+  {%- assign author = site.author -%}
+{%- endif -%}
+
+    {% if post.featured == true and featured != true %}
+    {% assign featured= true %}
+      <li class="post-entry post-featured">
+    {% else %}
+      <li class="post-entry">
+    {% endif %}
+    <div class="post-image" href="{{ post.url | relative_url }}"{% if post.image %} style="background-image: url({{ imagePath }});"{% endif %}>
+
+        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+        <a class="post-click" href="{{ post.url | relative_url }}"></a>
+         <h2>
+           <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+         </h2>
+         <div>
+          <span class="post-date">{{ post.date | date: date_format }}</span>
+{% if author.name -%}
+      <div class="post-author">Written by {% if author.page %}<a href="{{ author.page }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}</div>
+{% else %}
+      <div class="post-author">Written by {{ author.name }}</div>
+{% endif %}
+        </div>
+    </div>
+
+    <div class="post-description">
+{{ post.excerpt }}
+    </div>
+
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>

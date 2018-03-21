@@ -1,0 +1,11 @@
+{% if include.username -%}
+{%- if include.githubname -%}
+<a href="https://github.com/{{ include.githubname }}"><span class="icon icon--github">{% include icon-github.svg %}</span><span class="username">{{ include.username }}</span></a>
+{%- else -%}
+<a href="https://github.com/{{ include.username }}"><span class="icon icon--github">{% include icon-github.svg %}</span><span class="username">{{ include.username }}</span></a>
+{%- endif -%}
+{%- elsif site.author -%}
+<a href="{{ site.github.owner_url }}"><span class="icon icon--github">{% include icon-github.svg %}</span><span class="username">{{ site.author.name }}</span></a>
+{%- else -%}
+<a href="{{ site.github.owner_url }}"><span class="icon icon--github">{% include icon-github.svg %}</span><span class="username">{{ site.github.owner_name }}</span></a>
+{%- endif -%}

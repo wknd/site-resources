@@ -1,0 +1,44 @@
+---
+layout: default
+origin: "post"
+---
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+{%- if page.image.global -%}
+    {%- capture imagePath %}/assets/images/global/{{ page.image.name }}{% endcapture -%}
+{%- else -%}
+    {%- capture imagePath %}/assets/images/posts/{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}/{{ page.image.name }}{% endcapture -%}
+{%- endif %}
+
+{%- if page.author -%}
+  {%- if site.data.authors[page.author] -%}
+    {%- assign author = site.data.authors[page.author] -%}
+  {%- else -%}
+    {%- assign author = page.author -%}
+  {%- endif -%}
+{%- elsif site.data.authors[site.author] -%}
+  {%- assign author = site.data.authors[site.author] -%}
+{%- else -%}
+  {%- assign author = site.author -%}
+{%- endif -%}
+
+  <header class="post-header">{%- if page.image %}
+    <img class="post-head-image" src="{{ imagePath }}" />{%- endif %}
+    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+    <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      {{- page.date | date: date_format -}}
+    </time>{% if author.name %}
+    <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by {% if author.page %}<a href="{{author.page}}"><span itemprop="name">{{ author.name }}</span></a>{% else %}<span itemprop="name">{{ author.name }}</span>{% endif %}</span>
+{% else %}
+    <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by <span itemprop="name">{{ author }}</span></span>
+{% endif %}
+  </header>
+
+  <div class="article-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  {% if site.disqus.shortname %}
+    {% include disqus_comments.html %}
+  {% endif %}
+</article>

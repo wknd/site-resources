@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+// Define defaults for each variable.
+
+$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$base-font-size:   16px !default;
+$base-font-weight: 400 !default;
+$small-font-size:  $base-font-size * 0.875 !default;
+$base-line-height: 1.5 !default;
+$transparent:    0.25;
+
+
+$spacing-unit:     30px !default;
+
+
+// summerfruit-dark base16 colour scheme
+$base00: #151515;
+$base01: #202020;
+$base02: #303030;
+$base03: #505050;
+$base04: #B0B0B0;
+$base05: #D0D0D0;
+$base06: #E0E0E0;
+$base07: #FFFFFF;
+$base08: #FF0086;
+$base09: #FD8900;
+$base0A: #ABA800;
+$base0B: #00C918;
+$base0C: #1FAAAA;
+$base0D: #3777E6;
+$base0E: #AD00A1;
+$base0F: #CC6633;
+
+
+$background: $base01 !default;
+$background-light: $base02 !default;
+$foreground: $base04 !default;
+$foreground-light: $base05 !default;
+//$flash1: $base08 !default;
+$flash1: $base0E !default;
+$flash2: $base0B !default;
+$flash3: $base08 !default;
+
+//$background: $base00 !default;
+//$background-light: $base01 !default;
+//$background-selection: $base02 !default;
+//$comment-color: $base03 !default;
+//$foreground-dark: $base04 !default;
+//$foreground: $base05 !default;
+//$foreground-light: $base06 !default;
+//$foreground-light2: $base07 !default;
+//$variables: $base08 !default;
+//$integers: $base09 !default;
+//$classes: $base0A !default;
+//$strings: $base0B !default;
+//$quotes: $base0C !default;
+//$functions: $base0D !default;
+//$keywords: $base0E !default;
+//$tags: $base0F !default;
+
+// Width of the content area
+$content-width:    1500px !default;
+
+
+$on-phone:          420px !default;
+$on-tablet:        710px !default;
+$on-laptop:        1200px !default;
+
+// Use media queries like this:
+// @include media-query($on-phone) {
+//   .wrapper {
+//     padding-right: $spacing-unit / 2;
+//     padding-left: $spacing-unit / 2;
+//   }
+// }
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin on_tablet {
+  @media screen and (min-width: $on_tablet) {
+    @content;
+  }
+}
+
+@mixin on_laptop {
+  @media screen and (min-width: $on_laptop) {
+    @content;
+  }
+}
+
+@mixin on_phone {
+  @media screen and (max-width: $on_tablet) {
+    @content;
+  }
+}
+
+@mixin relative-font-size($ratio) {
+  font-size: $base-font-size * $ratio;
+}

@@ -1,0 +1,108 @@
+.article-content {
+  color: $foreground; 
+  overflow-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
+
+  p, blockquote, pre,
+  ul, ol, dl {
+    margin: $spacing-unit / 2;
+  }
+  hr {
+    clear: both;
+  }
+  
+  p {
+  }
+  blockquote {
+    border-left: $flash1;
+    border-left: 5px solid $flash1;
+    background-color: $background;
+    padding: $spacing-unit / 4;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    padding: $spacing-unit / 2;
+  }
+  h1 {
+    @include relative-font-size(2.7);
+    color: $background;
+    background-color: $flash1;
+    text-align: center;
+  }
+  h2 {
+    @include relative-font-size(2.4);
+  }
+  h3 {
+    @include relative-font-size(2.1);
+  }
+  h4 {
+    @include relative-font-size(1.8);
+  }
+  h5 {
+    @include relative-font-size(1.5);
+  }
+  h6 {
+    @include relative-font-size(1.2);
+  }
+  ol {
+    list-style-position: inside;
+  }
+  ul {
+    list-style-position: inside;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  figure {
+    display: block;
+    box-sizing: border-box;
+    background: $background;
+    padding: 0px;
+    height: auto;
+    clear: both;
+    @include on_phone {
+        min-width: 100%;
+    }
+
+
+  }
+  figure:not(.article-float-img-right, .article-float-img-left) {
+    width: 100%;
+  }
+
+  .article-float-img-right, .article-float-img-left {
+    width: auto;
+    margin-top: $spacing-unit / 2;
+    margin-bottom: $spacing-unit / 2;
+  }
+
+  @include on_tablet {
+    .article-float-img-right {
+      float: right;
+      max-width: 50%;
+      margin-left: $spacing-unit / 2;
+      margin-right: $spacing-unit / 2;
+
+    }      
+    .article-float-img-left {
+      margin-left: $spacing-unit / 2;
+      margin-right: $spacing-unit / 2;
+      float: left;
+      max-width: 50%;
+    }      
+  }
+  @include on_laptop {
+    .article-float-img-right {
+      max-width: 66.6%;
+    }      
+    .article-float-img-left {
+      max-width: 66.6%;
+    }      
+  }
+}

@@ -1,0 +1,20 @@
+.post {
+    margin-top: $spacing-unit;
+    background-color: $background-light;
+    padding: 0px;
+}
+.post-header {
+  position: relative;
+  background-color: $background-light;
+  text-align: center;
+  padding: 0px;
+  margin: 0px 0px $spacing-unit / 2;
+  width: 100%;
+  .post-head-image {
+    vertical-align: top;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: auto;    
+  }
+}

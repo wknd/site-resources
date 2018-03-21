@@ -1,0 +1,29 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
+{%- if layout.origin == "index" -%}
+{%- capture styles -%}
+@import "index-base"
+{%- endcapture -%}
+{%- elsif layout.origin == "post" -%}
+{%- capture styles -%}
+@import "post-base"
+{%- endcapture -%}
+{%- elsif layout.origin == "page" -%}
+{%- capture styles -%}
+@import "page-base"
+{%- endcapture -%}
+{%- else -%}
+{%- capture styles -%}
+@import "default-base"
+{%- endcapture -%}
+{%- endif %}
+<style>
+{{ styles | scssify }}
+</style>
+</head>
