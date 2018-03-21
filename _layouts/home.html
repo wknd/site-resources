@@ -8,7 +8,7 @@ origin: "index"
 {%- if site.posts[0].image.global -%}
     {%- capture imagePath %}/assets/images/global/{{ site.posts[0].image.name }}{% endcapture -%}
 {%- else -%}
-    {%- capture imagePath %}/assets/images/posts/{{ site.posts[0].date | date: "%Y-%m-%d" }}-{{ site.posts[0].title | slugify }}/{{ site.posts[0].image.name }}{% endcapture -%}
+    {%- capture imagePath %}{{ site.baseurl }}/assets/images/posts/{{ site.posts[0].date | date: "%Y-%m-%d" }}-{{ site.posts[0].title | slugify }}/{{ site.posts[0].image.name }}{% endcapture -%}
 {%- endif -%}
 {%- assign post = site.posts[0] -%}
 {%- if post.author -%}
@@ -49,7 +49,7 @@ origin: "index"
 {%- if post.image.global -%}
     {%- capture imagePath %}/assets/images/global/{{ post.image.name }}{% endcapture -%}
 {%- else -%}
-    {%- capture imagePath %}/assets/images/posts/{{ post.date | date: "%Y-%m-%d" }}-{{ post.title | slugify }}/{{ post.image.name }}{% endcapture -%}
+    {%- capture imagePath %}{{ site.baseurl }}/assets/images/posts/{{ post.date | date: "%Y-%m-%d" }}-{{ post.title | slugify }}/{{ post.image.name }}{% endcapture -%}
 {%- endif -%}
 
 {%- if post.author -%}
