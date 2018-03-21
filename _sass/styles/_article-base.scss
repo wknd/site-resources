@@ -12,6 +12,15 @@
   hr {
     clear: both;
   }
+  a { 
+    color: $flash;
+    text-decoration: none;
+  }
+  a:hover {
+    background-color: $flash;
+    color: $foreground;
+    text-decoration: underline;
+  }
   
   p {
   }
