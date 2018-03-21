@@ -9,11 +9,13 @@
 
 {%- if include.global -%}
   {%- capture imagePath %}global/{{ include.name }}{% endcapture -%}
+  {%- assign baseimgPath = '' -%}
 {%- else -%}
+  {%- assign baseimgPath = site.baseurl -%}
   {%- capture imagePath %}posts/{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}/{{ include.name }}{% endcapture -%}
 {%- endif -%}
-  <a href="/assets/images-original/{{ imagePath }}">
-  <img src="/assets/images/{{ imagePath }}"
+  <a href="{{ baseimgPath }}/assets/images-original/{{ imagePath }}">
+  <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}"
 {%- if include.alt %} alt="{{ include.alt }}" {% endif -%}
 {%- if include.width -%}{%- unless rel == '%' %} width="{{ include.width }}" {% endunless -%}{%- endif -%}{%- if include.height %} style="max-height: {{ include.height }};" {% endif %}/>
   </a>
