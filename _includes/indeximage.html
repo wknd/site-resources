@@ -27,15 +27,18 @@
          <h2>
            <a class="post-title" href="{{ include.url | relative_url }}">{{ include.title | escape }}</a>
          </h2>
+{% if include.date or include.author %}
+         <div>
+{% endif %}
 {% if include.date -%}
-{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-          <span class="post-date">{{ include.date | date: date_format }}</span>
+{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+           <span class="post-date">{{ include.date | date: date_format }}</span>
 {% endif -%}
 {%- if include.author -%}
-  {% if include.author.name -%}
-      <div class="post-author">Written by {% if include.author.page %}<a href="{{ include.author.page }}">{{ include.author.name }}</a>{% else %}{{ include.author.name }}{% endif %}</div>
-  {% else -%}
-      <div class="post-author">Written by {{ include.author }}</div>
+  {% if include.author.name %}
+           <div class="post-author">Written by {% if include.author.page %}<a href="{{ include.author.page }}">{{ include.author.name }}</a>{% else %}{{ include.author.name }}{% endif %}</div>
+  {% else %}
+           <div class="post-author">Written by {{ include.author }}</div>
   {% endif -%}
-{%- endif -%}
+{%- endif %}
     </div>
