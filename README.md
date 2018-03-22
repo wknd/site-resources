@@ -14,3 +14,8 @@ it can have one of the following values
 * project: image resides in the sub projects-assets ```assets/images/global/```
 * collection: image resides in the sub-projects assets ```assets/images/collections/[collectionName]/```
 * local: image resides in the sub-projects assets if it is a post it is in ```assets/images/posts/YYYY-MM-DD-post-title``` if it is a page part of a collection its location is ```assets/images/collections/[collectionName]/pageTitle/```
+
+if global is false or not set, it defaults to ```local```.
+if global is set to true, it defaults to ```global```.
+
+each corresponding ```assets/images/``` directory should also have a corresponding ```assets/images-original/``` directory.

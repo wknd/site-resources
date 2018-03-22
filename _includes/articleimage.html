@@ -7,12 +7,29 @@
 {%- endif -%}
 {%- if include.float %} class="article-float-img-{{ include.float}}" {% endif %}>
 
-{%- if include.global -%}
-  {%- capture imagePath %}global/{{ include.name }}{% endcapture -%}
-  {%- assign baseimgPath = '' -%}
+{%- comment %} this is the default behaviour if global isn't set {% endcomment -%}
+{%- if page.collection -%}
+  {%- capture imagePath %}collections/{{ page.collection }}/{{ page.title | slugify }}/{{ include.name }}{% endcapture -%}
+  {%- assign baseimgPath = site.baseurl -%}    
 {%- else -%}
   {%- assign baseimgPath = site.baseurl -%}
   {%- capture imagePath %}posts/{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}/{{ include.name }}{% endcapture -%}
+{%- endif -%}
+{%- comment %} behaviour if global is specified {% endcomment -%}
+{%- if include.global -%}
+  {%- if include.global == "global"-%}
+    {%- capture imagePath %}global/{{ include.name }}{% endcapture -%}
+    {%- assign baseimgPath = '' -%}
+  {%- elsif include.global == "project" -%}
+    {%- capture imagePath %}global/{{ include.name }}{% endcapture -%}
+    {%- assign baseimgPath = site.baseurl -%}
+  {%- elsif include.global == collection and page.collection -%}
+    {%- capture imagePath %}collections/{{ page.collection }}/{{ include.name }}{% endcapture -%}
+    {%- assign baseimgPath = site.baseurl -%}
+  {%- else -%}
+    {%- capture imagePath %}global/{{ include.name }}{% endcapture -%}
+    {%- assign baseimgPath = '' -%}
+  {%- endif -%}
 {%- endif -%}
   <a href="{{ baseimgPath }}/assets/images-original/{{ imagePath }}">
   <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}"
