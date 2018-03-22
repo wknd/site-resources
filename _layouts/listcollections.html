@@ -1,0 +1,35 @@
+---
+layout: default
+origin: "index"
+---
+<div class="home">
+  {{ content }}
+  <ul class="post-list">
+
+{% for collection in site.collections %}
+{%- if collection.image -%}
+{%- if collection.image.global -%}
+    {%- capture imagePath %}/assets/images/global/{{ collection.image.name }}{% endcapture -%}
+{%- else -%}
+    {%- capture imagePath %}{{ site.baseurl }}/assets/images/collection/{{ collection.label | slugify }}{{ collection.image.name}}{% endcapture -%}
+{%- endif -%}
+{%- endif -%}
+{%- unless collection.label == "posts" -%}
+    <li class="post-entry">
+    <div class="post-image" href="{{site.baseurl}}/{{ collection.label }}"{% if collection.image %} style="background-image: url({{ imagePath }});"{% endif %}>
+
+        <a class="post-click" href="{{site.baseurl}}/{{ collection.label }}"></a>
+         <h2>
+           <a class="post-title" href="{{site.baseurl}}/{{ collection.label }}">{{ collection.label | escape }}</a>
+         </h2>
+    </div>
+
+    <div class="post-description">
+{{ collection.excerpt }}
+    </div>
+    </li>
+{%- endunless -%}
+{% endfor %}
+  </ul>
+</div>
+
