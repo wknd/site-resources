@@ -19,7 +19,7 @@ origin: "index"
 {%- endif -%}
 
     <li class="post-entry post-newest">
-{% include indeximage.html image=site.posts[0].image url=site.posts[0].url title=site.posts[0].title author=author date=site.posts[0].date %}
+{% include indeximage.html image=post.image url=post.url title=post.title author=author date=post.date %}
     </div>
     <div class="post-description">
 {{ site.posts[0].excerpt }}
