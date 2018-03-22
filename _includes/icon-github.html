@@ -1,11 +1,23 @@
 {% if include.username -%}
-{%- if include.githubname -%}
-<a href="https://github.com/{{ include.githubname }}"><span class="icon icon--github">{% include icon-github.svg %}</span><span class="username">{{ include.username }}</span></a>
-{%- else -%}
-<a href="https://github.com/{{ include.username }}"><span class="icon icon--github">{% include icon-github.svg %}</span><span class="username">{{ include.username }}</span></a>
-{%- endif -%}
+  {%- assign name = include.username -%}
 {%- elsif site.author -%}
-<a href="{{ site.github.owner_url }}"><span class="icon icon--github">{% include icon-github.svg %}</span><span class="username">{{ site.author.name }}</span></a>
+  {%- if site.data.authors[site.author].name -%}
+    {%- assign name = site.data.authors[site.author].name -%}
+  {%- else -%}
+    {%- assign name = site.author -%}
+  {%- endif -%}
 {%- else -%}
-<a href="{{ site.github.owner_url }}"><span class="icon icon--github">{% include icon-github.svg %}</span><span class="username">{{ site.github.owner_name }}</span></a>
+    {%- assign name = site.github.owner_name -%}
 {%- endif -%}
+{%- if include.githubname -%}
+  {%- assign github = include.githubname -%}
+{%- elsif site.author -%}
+  {%- if site.data.authors[site.author].github -%}
+    {%- assign github = site.data.authors[site.author].github -%}
+  {%- else -%}
+    {%- assign github = site.github.owner_name -%}
+  {%- endif -%}
+{%- else -%}
+    {%- assign github = site.github.owner_name -%}
+{%- endif -%}
+<a href="https://github.com/{{ github }}"><span class="icon icon--github">{% include icon-github.svg %}</span><span class="username">{{ name }}</span></a>
