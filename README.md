@@ -5,7 +5,7 @@
 to handle images properly, they need to be placed in the correct place
 when passing an image to something that would display it, the image object has 2 parameters
 > image:
->>   name: the_filename_of_the_image
+>>   name: the_filename_of_the_image  
 >>   global: [somevalue]
 
 the value of global determines where the image is located
