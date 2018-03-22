@@ -41,4 +41,7 @@
            <div class="post-author">Written by {{ include.author }}</div>
   {% endif -%}
 {%- endif %}
+{% if include.date or include.author %}
+         </div>
+{% endif %}
     </div>
