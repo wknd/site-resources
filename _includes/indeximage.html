@@ -1,0 +1,41 @@
+{%- comment %} this is the default behaviour if global isn't set {% endcomment -%}
+{%- if page.collection and page.collection != "posts" -%}
+  {%- capture imagePath %}collections/{{ page.collection }}/{{ page.title | slugify }}/{{ include.image.name }}{% endcapture -%}
+  {%- assign baseimgPath = site.baseurl -%}
+{%- else -%}
+  {%- assign baseimgPath = site.baseurl -%}
+  {%- capture imagePath %}posts/{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}/{{ include.image.name }}{% endcapture -%}
+{%- endif -%}
+{%- comment %} behaviour if global is specified {% endcomment -%}
+{%- if include.image.global -%}
+  {%- if include.image.global == "global"-%}
+    {%- capture imagePath %}global/{{ include.image.name }}{% endcapture -%}
+    {%- assign baseimgPath = '' -%}
+  {%- elsif include.image.global == "project" -%}
+    {%- capture imagePath %}global/{{ include.image.name }}{% endcapture -%}
+    {%- assign baseimgPath = site.baseurl -%}
+  {%- elsif include.image.global == "collection" and page.collection and page.collection != "posts" -%}
+    {%- capture imagePath %}collections/{{ page.collection }}/{{ include.image.name }}{% endcapture -%}
+    {%- assign baseimgPath = site.baseurl -%}
+  {%- elsif include.image.global != "local" -%}{%- comment %} if its not local by this point, it'll be set to true {% endcomment -%}
+    {%- capture imagePath %}global/{{ include.image.name }}{% endcapture -%}
+    {%- assign baseimgPath = '' -%}
+  {%- endif -%}
+{%- endif -%}
+    <div class="post-image" href="{{ include.url | relative_url }}"{% if include.image %} style="background-image: url({{ baseimgPath }}/assets/images/{{ imagePath }});"{% endif %}>
+        <a class="post-click" href="{{ include.url | relative_url }}"></a>
+         <h2>
+           <a class="post-title" href="{{ include.url | relative_url }}">{{ include.title | escape }}</a>
+         </h2>
+{% if include.date -%}
+{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          <span class="post-date">{{ include.date | date: date_format }}</span>
+{% endif -%}
+{%- if include.author -%}
+  {% if include.author.name -%}
+      <div class="post-author">Written by {% if include.author.page %}<a href="{{ include.author.page }}">{{ include.author.name }}</a>{% else %}{{ include.author.name }}{% endif %}</div>
+  {% else -%}
+      <div class="post-author">Written by {{ include.author }}</div>
+  {% endif -%}
+{%- endif -%}
+    </div>

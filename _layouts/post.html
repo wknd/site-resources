@@ -3,6 +3,32 @@ layout: default
 origin: "post"
 ---
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+{%- comment %} this is the default behaviour if global isn't set {% endcomment -%}
+{%- if page.collection and page.collection != "posts" -%}
+  {%- capture imagePath %}collections/{{ page.collection }}/{{ page.title | slugify }}/{{ page.image.name }}{% endcapture -%}
+  {%- assign baseimgPath = site.baseurl -%}
+{%- else -%}
+  {%- assign baseimgPath = site.baseurl -%}
+  {%- capture imagePath %}posts/{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}/{{ page.image.name }}{% endcapture -%}
+{%- endif -%}
+{%- comment %} behaviour if global is specified {% endcomment -%}
+{%- if page.image.global -%}
+  {%- if page.image.global == "global"-%}
+    {%- capture imagePath %}global/{{ page.image.name }}{% endcapture -%}
+    {%- assign baseimgPath = '' -%}
+  {%- elsif page.image.global == "project" -%}
+    {%- capture imagePath %}global/{{ page.image.name }}{% endcapture -%}
+    {%- assign baseimgPath = site.baseurl -%}
+  {%- elsif page.image.global == "collection" and page.collection and page.collection != "posts" -%}
+    {%- capture imagePath %}collections/{{ page.collection }}/{{ page.image.name }}{% endcapture -%}
+    {%- assign baseimgPath = site.baseurl -%}
+  {%- elsif page.image.global != "local" -%}{%- comment %} if its not local by this point, it'll be set to true {% endcomment -%}
+    {%- capture imagePath %}global/{{ page.image.name }}{% endcapture -%}
+    {%- assign baseimgPath = '' -%}
+  {%- endif -%}
+{%- endif -%}
+
+
 {%- if page.image.global -%}
     {%- capture imagePath %}/assets/images/global/{{ page.image.name }}{% endcapture -%}
 {%- else -%}
@@ -22,7 +48,7 @@ origin: "post"
 {%- endif -%}
 
   <header class="post-header">{%- if page.image %}
-    <img class="post-head-image" src="{{ imagePath }}" />{%- endif %}
+    <img class="post-head-image" src="{{ baseimgPath }}/assets/images/{{ imagePath }}" />{%- endif %}
     <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
     <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
