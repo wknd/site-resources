@@ -23,10 +23,10 @@
   {%- elsif include.global == "project" -%}
     {%- capture imagePath %}global/{{ include.name }}{% endcapture -%}
     {%- assign baseimgPath = site.baseurl -%}
-  {%- elsif include.global == collection and page.collection and page.collection != "posts" -%}
+  {%- elsif include.global == "collection" and page.collection and page.collection != "posts" -%}
     {%- capture imagePath %}collections/{{ page.collection }}/{{ include.name }}{% endcapture -%}
     {%- assign baseimgPath = site.baseurl -%}
-  {%- else -%}
+  {%- elsif include.global != "local" -%}{%- comment %} if its not local by this point, it'll be set to true {% endcomment -%}
     {%- capture imagePath %}global/{{ include.name }}{% endcapture -%}
     {%- assign baseimgPath = '' -%}
   {%- endif -%}
