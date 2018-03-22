@@ -8,7 +8,7 @@
 {%- if include.float %} class="article-float-img-{{ include.float}}" {% endif %}>
 
 {%- comment %} this is the default behaviour if global isn't set {% endcomment -%}
-{%- if page.collection -%}
+{%- if page.collection and page.collection != "posts" -%}
   {%- capture imagePath %}collections/{{ page.collection }}/{{ page.title | slugify }}/{{ include.name }}{% endcapture -%}
   {%- assign baseimgPath = site.baseurl -%}    
 {%- else -%}
@@ -23,7 +23,7 @@
   {%- elsif include.global == "project" -%}
     {%- capture imagePath %}global/{{ include.name }}{% endcapture -%}
     {%- assign baseimgPath = site.baseurl -%}
-  {%- elsif include.global == collection and page.collection -%}
+  {%- elsif include.global == collection and page.collection and page.collection != "posts" -%}
     {%- capture imagePath %}collections/{{ page.collection }}/{{ include.name }}{% endcapture -%}
     {%- assign baseimgPath = site.baseurl -%}
   {%- else -%}
