@@ -1,4 +1,4 @@
-<div class="clearfix"></div>
+{%- unless include.clearfix == 'no' -%}<div class="clearfix"></div>{%- endunless -%}
 {% assign rel = include.width | slice: -1 -%}
 {%- if include.width and rel == '%' -%}
 <figure style="max-width: {{ include.width }};"

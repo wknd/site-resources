@@ -4,6 +4,7 @@
   word-break: break-word;
   word-wrap: break-word;
   max-width: 100%;
+  padding-bottom: $spacing-unit/2;
 
   p, blockquote, pre,
   ul, ol, dl {
@@ -11,6 +12,9 @@
   }
   hr {
     clear: both;
+    background-color: $flash1;
+    color: $flash1;
+    height: 1px;
   }
 
   a { 
@@ -36,12 +40,16 @@
   }
   h1 {
     @include relative-font-size(2.7);
+    clear: both;
     color: $background;
     background-color: $flash1;
     text-align: center;
+    margin-top: $spacing-unit * 2;
   }
   h2 {
     @include relative-font-size(2.4);
+    margin-top: $spacing-unit;
+    clear: both;
   }
   h3 {
     @include relative-font-size(2.1);
@@ -55,12 +63,14 @@
   h6 {
     @include relative-font-size(1.2);
   }
+/*
+  not needed anymore, moved to _base  
   ol {
     list-style-position: inside;
   }
   ul {
     list-style-position: inside;
-  }
+  }*/
 
   img {
     display: block;
@@ -80,8 +90,9 @@
         min-width: 100%;
     }
 
-
   }
+
+
   figure:not(.article-float-img-right, .article-float-img-left) {
     width: 100%;
   }
