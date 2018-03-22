@@ -28,13 +28,6 @@ origin: "post"
   {%- endif -%}
 {%- endif -%}
 
-
-{%- if page.image.global -%}
-    {%- capture imagePath %}/assets/images/global/{{ page.image.name }}{% endcapture -%}
-{%- else -%}
-    {%- capture imagePath %}{{ site.baseurl }}/assets/images/posts/{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}/{{ page.image.name }}{% endcapture -%}
-{%- endif %}
-
 {%- if page.author -%}
   {%- if site.data.authors[page.author] -%}
     {%- assign author = site.data.authors[page.author] -%}
