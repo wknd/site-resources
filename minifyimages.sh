@@ -8,8 +8,8 @@
 
 # TODO: create different sized images once I support that sort of thing
 
-SEARCHDIR="../assets/images-original/" # location of the input images
-OUTPUTDIR="../assets/images/" # location of the output images
+SEARCHDIR="/../assets/images-original/" # location of the input images
+OUTPUTDIR="/../assets/images/" # location of the output images
 
 SEARCHDIR=$(dirname "$0")$SEARCHDIR # make it relative to script location
 OUTPUTDIR=$(dirname "$0")$OUTPUTDIR # make it relative to script location
