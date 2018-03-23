@@ -23,7 +23,10 @@
 @import "default-base"
 {%- endcapture -%}
 {%- endif %}
-{% assign fullstyles | prepend: '$background-img: "/assets/images/global/cross-street_francesco.lorenzetti.jpg";'%}
+{%- capture backgroundimage %}
+$background-img: "/assets/images/global/cross-street_francesco.lorenzetti.jpg";
+{% endcapture -%}
+{% assign fullstyles | prepend: backgroundimage %}
 <style>
 {{ fullstyles | scssify }}
 </style>
