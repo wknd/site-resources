@@ -12,6 +12,13 @@ header, section, footer, aside, nav, main, article, figure {
 }
 body {
   background-color: $background;
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+     -moz-font-feature-settings: "kern" 1;
+       -o-font-feature-settings: "kern" 1;
+          font-feature-settings: "kern" 1;
+  font-kerning: normal;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
