@@ -7,22 +7,14 @@ origin: "index"
   <ul class="post-list">
 
 {% for collection in site.collections %}
-{%- if collection.image -%}
-{%- if collection.image.global -%}
-    {%- capture imagePath %}/assets/images/global/{{ collection.image.name }}{% endcapture -%}
-{%- else -%}
-    {%- capture imagePath %}{{ site.baseurl }}/assets/images/collection/{{ collection.label | slugify }}{{ collection.image.name}}{% endcapture -%}
-{%- endif -%}
-{%- endif -%}
 {%- unless collection.label == "posts" -%}
+{%- comment %} grab the index page of the collection {% endcomment -%}
+{%- assign collectionindex = collection.relative_directory | append: '/index.md' -%}
+{%- assign indexpages = collection.docs | where: "relative_path", collectionindex -%}
+{%- assign indexpage = indexpage[0] %}
     <li class="post-entry">
-    <div class="post-image" href="{{site.baseurl}}/{{ collection.label }}"{% if collection.image %} style="background-image: url({{ imagePath }});"{% endif %}>
-
-        <a class="post-click" href="{{site.baseurl}}/{{ collection.label }}"></a>
-         <h2>
-           <a class="post-title" href="{{site.baseurl}}/{{ collection.label }}">{{ collection.label | escape }}</a>
-         </h2>
-    </div>
+{%- capture url -%}{{site.baseurl}}/{{ collection.label }}{% endcapture -%}
+{% include indeximage.html image=indexpage.image url=url title=collection.label %}
 
     <div class="post-description">
 {{ collection.excerpt }}
