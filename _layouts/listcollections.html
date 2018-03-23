@@ -10,11 +10,8 @@ origin: "index"
 {%- unless collection.label == "posts" -%}
   {%- comment %} grab the index page of the collection {% endcomment -%}
   {%- assign collectionindex = collection.relative_directory | append: '/index.md' -%}
-  {{ collectionindex }}
   {%- assign indexpages = collection.docs | where: "relative_path", collectionindex -%}
   {%- assign indexpage = indexpages[0] %}
-  {{ indexpage }}
-  {{ indexpage.image }}
     <li class="post-entry">
 {%- capture url -%}{{site.baseurl}}/{{ collection.label }}{% endcapture -%}
 {% include indeximage.html image=indexpage.image url=collection.label title=collection.label %}
