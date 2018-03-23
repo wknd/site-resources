@@ -24,7 +24,7 @@
 {%- endcapture -%}
 {%- endif %}
 {%- capture backgroundimage %}
-$background-img: "/assets/images/global/cross-street_francesco.lorenzetti.jpg";
+$background-img: "{{ site.background-image }}";
 {% endcapture -%}
 {% assign fullstyles = styles | prepend: backgroundimage %}
 <style>
