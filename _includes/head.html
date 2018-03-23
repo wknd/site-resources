@@ -23,6 +23,7 @@
 @import "default-base"
 {%- endcapture -%}
 {%- endif %}
+{% styles | prepend: '$background-img: "/assets/images/global/cross-street_francesco.lorenzetti.jpg";'%}
 <style>
 {{ styles | scssify }}
 </style>
