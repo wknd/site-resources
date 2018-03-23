@@ -39,7 +39,6 @@ ul {
   margin-left: auto;
   padding-right: $spacing-unit / 2;
   padding-left: $spacing-unit / 2;
-  @extend %clearfix;
   @include on_tablet {
     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 4));
     max-width:         calc(#{$content-width} - (#{$spacing-unit} * 4));
