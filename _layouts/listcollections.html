@@ -12,6 +12,7 @@ origin: "index"
 {%- assign collectionindex = collection.relative_directory | append: '/index.md' -%}
 {%- assign indexpages = collection.docs | where: "relative_path", collectionindex -%}
 {%- assign indexpage = indexpage[0] %}
+{{ indexpage.image }}
     <li class="post-entry">
 {%- capture url -%}{{site.baseurl}}/{{ collection.label }}{% endcapture -%}
 {% include indeximage.html image=indexpage.image url=url title=collection.label %}
