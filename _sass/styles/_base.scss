@@ -52,6 +52,12 @@ ul {
   clear: both;
 }
 
+@media print {
+    .page-content {
+        overflow-y: visible;
+    }
+}
+
 .page-content {
   flex: 1;
   display: block;
