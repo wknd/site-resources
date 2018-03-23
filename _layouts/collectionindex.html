@@ -10,10 +10,12 @@ origin: "index"
  <ul class="post-list">
 {% for document in collection -%}
 {%- unless page.url == document.url-%}
-  {%- if document.title == "overview" and overview != true %}
+ {%- assign checkoverview = document.title | truncate: 8, "" | downcase -%}
+ {%- assign checkintro = document.title | truncate: 5, "" | downcase -%}
+  {%- if checkoverview == "overview" and overview != true %}
     <li class="post-entry post-newest">
     {%- assign overview = true %}
-  {%- elsif document.title == "intro" and intro != true %}
+  {%- elsif checkintro == "intro" and intro != true %}
     <li class="post-entry post-featured">
     {%- assign intro = true %}
   {%- else %}
