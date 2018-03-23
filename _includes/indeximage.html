@@ -25,7 +25,7 @@
     <div class="post-image" href="{{ include.url | relative_url }}"{% if include.image %} style="background-image: url({{ baseimgPath }}/assets/images/{{ imagePath }});"{% endif %}>
         <a class="post-click" href="{{ include.url | relative_url }}"></a>
          <h2>
-           <a class="post-title" href="{{ include.url | relative_url }}">{{ include.title | escape | capitalize }}</a>
+           <a class="post-title" href="{{ include.url | relative_url }}">{{ include.title | escape }}</a>
          </h2>
 {% if include.date or include.author %}
          <div>
