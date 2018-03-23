@@ -3,7 +3,6 @@ layout: default
 origin: "index"
 ---
 <div class="home">
-  {{ content }}
 
   {%- assign name = page.collection -%}
   {%- assign collection = site[name] | sort: 'order' -%}
