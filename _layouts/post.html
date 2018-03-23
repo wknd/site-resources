@@ -42,7 +42,7 @@ origin: "post"
 
   <header class="post-header">{%- if page.image %}
     <img class="post-head-image" src="{{ baseimgPath }}/assets/images/{{ imagePath }}" />{%- endif %}
-    <h1 class="post-title" itemprop="name headline">{{ page.title | escape | downcase }}</h1>
+    <h1 class="post-title" itemprop="name headline">{{ page.title | escape | capitalize }}</h1>
     <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {{- page.date | date: date_format -}}
