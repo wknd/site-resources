@@ -15,7 +15,7 @@ origin: "index"
 {{ indexpage.image }}
     <li class="post-entry">
 {%- capture url -%}{{site.baseurl}}/{{ collection.label }}{% endcapture -%}
-{% include indeximage.html image=indexpage.image url=url title=collection.label %}
+{% include indeximage.html image=indexpage.image url=collection.label title=collection.label %}
 
     <div class="post-description">
 {{ collection.excerpt }}
