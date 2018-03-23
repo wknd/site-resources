@@ -6,11 +6,18 @@ origin: "index"
   {{ content }}
 
   {%- assign name = page.collection -%}
+  {%- assign collection = site[name] | sort 'order' -%}
  <ul class="post-list">
-{% for document in site[name] -%}
+{% for document in collection -%}
 {%- unless page.url == document.url-%}
-
+  {%- if document.title == "overview"-%}
+    <li class="post-entry post-newest">
+  {%- elsif document.title == "intro" -%}
+    <li class="post-entry post-featured">
+  {%- else -%}
     <li class="post-entry">
+  {%- endif -%}
+
 {% include indeximage.html image=document.image url=document.url title=document.title %}
     <div class="post-description">
 {{ document.excerpt }}
