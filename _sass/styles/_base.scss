@@ -77,7 +77,7 @@ ul {
   background-position: center center;
   margin: 0px 0px;
   padding-bottom: $spacing-unit * 2;
-  background-image: url(/assets/images/global/cross-street_francesco.lorenzetti.jpg);
+  background-image: url($background-img);
   background-attachment: fixed;
   background-origin: content-box;
 }
