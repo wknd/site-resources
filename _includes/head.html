@@ -26,6 +26,8 @@
 {%- capture backgroundimage %}
 $background-img: "{{ site.background-image }}";
 {% endcapture -%}
+{{ site.background-image }}
+{{ backgroundimage }}
 {% assign fullstyles = styles | prepend: backgroundimage %}
 <style>
 {{ fullstyles | scssify }}
