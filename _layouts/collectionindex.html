@@ -6,7 +6,7 @@ origin: "index"
   {{ content }}
 
   {%- assign name = page.collection -%}
-  {%- assign collection = site[name] | sort 'order' -%}
+  {%- assign collection = site[name] | sort: 'order' -%}
  <ul class="post-list">
 {% for document in collection -%}
 {%- unless page.url == document.url-%}
