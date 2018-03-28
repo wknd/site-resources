@@ -35,11 +35,14 @@
     min-height: 250px;
 
     max-width: 100%;
+
     margin: 0px;
     list-style: none;
     img {
       object-fit: cover;
       max-width: 100%;
+      min-height: 100%;
+
     }
   }
   .post-click {
