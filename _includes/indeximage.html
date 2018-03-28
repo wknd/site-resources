@@ -26,7 +26,7 @@
 
     <picture class="post-image" href="{{ include.url | relative_url }}"{% if include.image %} style="background-image: url({{ baseimgPath }}/assets/images/{{ imagePath }});"{% endif %}>
         {%- if include.image %}
-        <img src="{{ baseimgPath }}/assets/images/{{ imagePath |img_url: 320}}" alt="">
+        <img src="{{ baseimgPath }}/assets/images/{{ imagePath | img_url: 320}}" alt="">
         {% endif %}
         <a class="post-click" href="{{ include.url | relative_url }}"></a>
          <h2>
