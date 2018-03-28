@@ -67,12 +67,14 @@
 
   }
   .post-date {
-    position: static;
-    float: left;
+    position: absolute;
+    bottom: px;
+    left: 0px;
   }
   .post-author {
-    position: static;
-    float: right;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
   }
 
 }
