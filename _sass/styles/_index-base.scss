@@ -6,7 +6,7 @@
 .post-list {
   list-style: none;
   display: grid;
-  
+
   grid-template-columns: 1fr;
   grid-gap: ($spacing-unit / 2) ($spacing-unit / 2);
   @include on-tablet {
@@ -27,31 +27,36 @@
   background-color: $background-light;
   color: $foreground;
   height: 100%;
+  max-width: 100%;
   .post-image {
     position: relative;
     display: flex;
     flex-direction: column;
     min-height: 250px;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover !important;
-    background-repeat: no-repeat;
-    background-position: center center;
     margin: 0px;
     list-style: none;
+    img {
+      object-fit: cover;
+      object-position: center;
+      max-width: 100%;
+      height: $index-element-height;
+    }
   }
   .post-click {
-    flex-grow: 1;
+  /*  flex-grow: 1;
     display: inline-block;
-    z-index: 1;
+    z-index: 1; */
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     margin: 0px;
     padding: 0px;
   }
   .post-title {
     position: absolute;
     box-sizing: border-box;
-
     top: 0px;
     left: 0px;
     bottom: auto;
@@ -67,20 +72,27 @@
 
   }
   .post-date {
-    position: static;
-    float: left;
+    position: absolute;
+    bottom: 0;
+    top: auto;
+    right: auto;
+    left: 0;
   }
   .post-author {
-    position: static;
-    float: right;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    top: auto;
+    right: 0;
+    left: auto;
   }
- 
+
 }
 .post-newest {
   grid-column: 1 / -1;
   grid-row: 1 / 2;
   @include on-tablet {
-    min-height: 400px;
+    min-height: $index-element-height;
     .post-image {
       height: 100%;
     }
@@ -121,5 +133,5 @@
     color: $foreground;
     text-decoration: underline;
   }
-  
+
 }
