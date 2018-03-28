@@ -62,9 +62,8 @@ $flash3: $base08 !default;
 $content-width:    1500px !default;
 
 
-$on-phone:          420px !default;
-$on-tablet:        710px !default;
-$on-laptop:        1200px !default;
+$on-tablet:        900px !default;
+$on-laptop:        1500px !default;
 
 // Use media queries like this:
 // @include media-query($on-phone) {
