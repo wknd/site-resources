@@ -33,6 +33,7 @@
     display: flex;
     flex-direction: column;
     min-height: 250px;
+
     max-width: 100%;
     margin: 0px;
     list-style: none;
@@ -68,13 +69,15 @@
   }
   .post-date {
     position: absolute;
-    bottom: px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
   }
   .post-author {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
   }
 
 }
