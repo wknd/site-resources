@@ -6,23 +6,23 @@ origin: "index"
 
   {%- assign name = page.collection -%}
   {%- assign collection = site[name] | sort: 'order' -%}
- <ul class="post-list">
+ <ul class="post-list" itemscope itemtype="http://schema.org/ItemList">
 {% for document in collection -%}
 {%- unless page.url == document.url-%}
  {%- assign checkoverview = document.title | truncate: 8, "" | downcase -%}
  {%- assign checkintro = document.title | truncate: 5, "" | downcase -%}
   {%- if checkoverview == "overview" and overview != true %}
-    <li class="post-entry post-newest">
+    <li class="post-entry post-newest" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
     {%- assign overview = true %}
   {%- elsif checkintro == "intro" and intro != true %}
-    <li class="post-entry post-featured">
+    <li class="post-entry post-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
     {%- assign intro = true %}
   {%- else %}
-    <li class="post-entry">
+    <li class="post-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
   {%- endif -%}
 
 {% include indeximage.html image=document.image url=document.url title=document.title %}
-    <div class="post-description">
+    <div class="post-description" itemprop="description">
 {{ document.excerpt }}
     </div>
     </li>

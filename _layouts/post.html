@@ -41,7 +41,7 @@ origin: "post"
 {%- endif -%}
 
   <header class="post-header">{%- if page.image %}
-    <img class="post-head-image" src="{{ baseimgPath }}/assets/images/{{ imagePath }}" />{%- endif %}
+    <img class="post-head-image" itemprop="image" src="{{ baseimgPath }}/assets/images/{{ imagePath }}" />{%- endif %}
     <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
     <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}

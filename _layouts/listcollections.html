@@ -4,7 +4,7 @@ origin: "index"
 ---
 <div class="home">
   {{ content }}
-  <ul class="post-list">
+  <ul class="post-list" itemscope itemtype="http://schema.org/ItemList">
 
 {% for collection in site.collections %}
 {%- unless collection.label == "posts" -%}
@@ -12,11 +12,11 @@ origin: "index"
   {%- assign collectionindex = collection.relative_directory | append: '/index.md' -%}
   {%- assign indexpages = collection.docs | where: "relative_path", collectionindex -%}
   {%- assign indexpage = indexpages[0] %}
-    <li class="post-entry">
+    <li class="post-entry"  itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
 {%- capture url -%}{{site.baseurl}}/{{ collection.label }}{% endcapture -%}
 {% include indeximage.html image=indexpage.image url=collection.label title=collection.label %}
 
-    <div class="post-description">
+    <div class="post-description" itemprop="description">
 {{ indexpage.excerpt }}
     </div>
     </li>
