@@ -22,11 +22,18 @@
     {%- assign baseimgPath = '' -%}
   {%- endif -%}
 {%- endif -%}
+{%- comment %}liquid is retarded and has a replace, and a replace_first but no replace_last so we'll use some trickery to make it happen{% endcomment -%}
+{% assign imgReversed = imagePath | split: "" | reverse | join: "" %}
+320 480 800 1600
+{% assign size320 = "-320." | split: "" | reverse | join: "" %}
+{% assign size320 = "-480." | split: "" | reverse | join: "" %}
+{% assign size320 = "-800." | split: "" | reverse | join: "" %}
+{% assign size320 = "-1600." | split: "" | reverse | join: "" %}
 
 
     <picture class="post-image" href="{{ include.url | relative_url }}"{% if include.image %} style="background-image: url({{ baseimgPath }}/assets/images/{{ imagePath }});"{% endif %}>
         {%- if include.image %}
-        <img src="{{ baseimgPath }}/assets/images/{{ imagePath | img_url: 320x }}" alt="">
+        <img src="{{ baseimgPath }}/assets/images/{{ imageReversed | replace_first: '.', size320 | split: "" | reverse | join: "" }}" alt="">
         {% endif %}
         <a class="post-click" href="{{ include.url | relative_url }}"></a>
          <h2>
@@ -49,4 +56,4 @@
 {% if include.date or include.author %}
          </div>
 {% endif %}
-    </div>
+</picture>
