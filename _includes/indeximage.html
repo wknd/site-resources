@@ -34,7 +34,10 @@
 {%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
     <picture class="post-image" href="{{ include.url | relative_url }}">
       {%- if include.image %}
-      <img src="{{ image320 }}" srcset="{{ image480 }} 480w, {{ image800 }} 800w, {{ image1600 }} 1600w" alt="">
+      <img src="{{ image320 }}" srcset="
+        {{ image480 }} 480w,
+        {{ image800 }} 800w,
+        {{ image1600 }} 1600w" alt="">
       {% endif %}
       <h2 class="post-title" itemprop="name headline">{{ include.title | escape }}</h2>
       {% if include.date -%}
