@@ -33,24 +33,26 @@
 {%- assign image800 = imgReversed | replace_first: '.', size800 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
     <picture class="post-image" href="{{ include.url | relative_url }}">
-        <a class="post-click" href="{{ include.url | relative_url }}">
-        {%- if include.image %}
-        <img src="{{ image320 }}" srcset="{{ image480 }} 480w, {{ image800 }} 800w, {{ image1600 }} 1600w" alt="">
+      {%- if include.image %}
+      <img src="{{ image320 }}" srcset="{{ image480 }} 480w, {{ image800 }} 800w, {{ image1600 }} 1600w" alt="">
+      {% endif %}
+      <h2 class="post-title" itemprop="name headline">{{ include.title | escape }}</h2>
+      {% if include.date -%}
+      <time class="post-date" datetime="{{ include.date | date_to_xmlschema }}" itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {{- include.date | date: date_format -}}
+      </time>
+      {% endif -%}
+      {%- if include.author -%}
+        {% if include.author.name %}
+      <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by {% if include.author.page %}<a href="{{ include.author.page }}"><span itemprop="name">{{ include.author.name }}</span></a>{% else %}<span itemprop="name">{{ include.author.name }}</span>{% endif %}</span>
+        {% else %}
+      <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by <span itemprop="name">{{ include.author }}</span></span>
         {% endif %}
-        </a>
-         <h2>
-           <a class="post-title" href="{{ include.url | relative_url }}">{{ include.title | escape }}</a>
-         </h2>
+      {% endif %}
 
-{% if include.date -%}
-{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-           <span class="post-date">{{ include.date | date: date_format }}</span>
-{% endif -%}
-{%- if include.author -%}
-  {% if include.author.name %}
-           <div class="post-author">Written by {% if include.author.page %}<a href="{{ include.author.page }}">{{ include.author.name }}</a>{% else %}{{ include.author.name }}{% endif %}</div>
-  {% else %}
-           <div class="post-author">Written by {{ include.author }}</div>
-  {% endif -%}
-{%- endif %}
+
+        <a class="post-click" href="{{ include.url | relative_url }}">
+
+        </a>
 </picture>
