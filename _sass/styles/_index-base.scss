@@ -27,6 +27,7 @@
   background-color: $background-light;
   color: $foreground;
   height: 100%;
+  max-width: 100%;
   .post-image {
     position: relative;
     display: flex;
@@ -37,6 +38,7 @@
     list-style: none;
     img {
       object-fit: cover;
+      max-width: 100%;
     }
   }
   .post-click {

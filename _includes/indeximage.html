@@ -23,18 +23,15 @@
   {%- endif -%}
 {%- endif -%}
 {%- comment %}liquid is retarded and has a replace, and a replace_first but no replace_last so we'll use some trickery to make it happen{% endcomment -%}
-{% assign imgReversed = imagePath | split: "" | reverse | join: "" %}
-320 480 800 1600
-{% assign size320 = "-320." | split: "" | reverse | join: "" %}
-{% assign size480 = "-480." | split: "" | reverse | join: "" %}
-{% assign size800 = "-800." | split: "" | reverse | join: "" %}
-{% assign size1600 = "-1600." | split: "" | reverse | join: "" %}
-{% assign image320 = imgReversed | replace_first: '.', size320 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath %}
-{% assign image480 = imgReversed | replace_first: '.', size480 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath %}
-{% assign image800 = imgReversed | replace_first: '.', size800 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath %}
-{% assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath %}
-
-
+{%- assign imgReversed = imagePath | split: "" | reverse | join: "" -%}
+{%- assign size320 = "-320." | split: "" | reverse | join: "" -%}
+{%- assign size480 = "-480." | split: "" | reverse | join: "" -%}
+{%- assign size800 = "-800." | split: "" | reverse | join: "" -%}
+{%- assign size1600 = "-1600." | split: "" | reverse | join: "" -%}
+{%- assign image320 = imgReversed | replace_first: '.', size320 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
+{%- assign image480 = imgReversed | replace_first: '.', size480 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
+{%- assign image800 = imgReversed | replace_first: '.', size800 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
+{%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
     <picture class="post-image" href="{{ include.url | relative_url }}">
         {%- if include.image %}
         <img src="{{ image320 }}" srcset="{{ image480 }} 480w, {{ image800 }} 800w, {{ image1600 }} 1600w" alt="">
