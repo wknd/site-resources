@@ -50,9 +50,9 @@
       {% endif -%}
       {%- if include.author -%}
         {% if include.author.name %}
-      <span class="post-author" itemprop="author publisher" itemscope itemtype="http://schema.org/Person">Written by {% if include.author.page %}<a href="{{ include.author.page }}" itemprop="url"><span itemprop="name">{{ include.author.name }}</span></a>{% else %}<span itemprop="name">{{ include.author.name }}</span>{% endif %}</span>
+      <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by {% if include.author.page %}<a href="{{ include.author.page }}" itemprop="url"><span itemprop="name">{{ include.author.name }}</span></a>{% else %}<span itemprop="name">{{ include.author.name }}</span>{% endif %}</span>
         {% else %}
-      <span class="post-author" itemprop="author publisher" itemscope itemtype="http://schema.org/Person">Written by <span itemprop="name">{{ include.author }}</span></span>
+      <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by <span itemprop="name">{{ include.author }}</span></span>
         {% endif %}
       {% endif %}
       <a class="post-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
