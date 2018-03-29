@@ -42,9 +42,9 @@ origin: "index"
 
     {% if post.featured == true and featured != true %}
     {% assign featured= true %}
-      <li class="post-entry post-featured" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      <li class="post-entry post-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
     {% else %}
-      <li class="post-entry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      <li class="post-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
     {% endif %}
     <meta itemprop="position" content="{% increment counter %}" />
 {% include indeximage.html image=post.image url=post.url title=post.title author=author date=post.date %}
