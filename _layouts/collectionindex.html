@@ -21,7 +21,8 @@ origin: "index"
     <li class="post-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
   {%- endif -%}
 
-{% include indeximage.html image=document.image url=document.url title=document.title schema="final" %}
+{% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" %}
+    <meta itemprop="position" content="document.order" />
     <div class="post-description" itemprop="description">
 {{ document.excerpt }}
     </div>
