@@ -22,7 +22,7 @@ origin: "index"
   {%- endif -%}
 
 {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" %}
-    <meta itemprop="position" content="document.order" />
+    <meta itemprop="position" content="{{ document.order }}" />
     <div class="post-description" itemprop="description">
 {{ document.excerpt }}
     </div>
