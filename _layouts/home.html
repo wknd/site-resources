@@ -41,7 +41,7 @@ origin: "index"
 {%- endif -%}
 
     {% if post.featured == true and featured != true %}
-    {% assign featured= true %}
+    {% assign featured = true %}
       <li class="post-entry post-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
     {% else %}
       <li class="post-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
