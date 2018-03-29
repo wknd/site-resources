@@ -4,7 +4,7 @@ origin: "index"
 ---
 <div class="home">
   {{ content }}
-  <ul class="post-list" itemscope itemtype="http://schema.org/ItemList">
+  <ul class="post-list" itemscope itemtype="http://schema.org/Blog">
 {%- assign post = site.posts[0] -%}
 {%- if post.author -%}
   {%- if site.data.authors[post.author] -%}
@@ -18,7 +18,7 @@ origin: "index"
   {%- assign author = site.author -%}
 {%- endif -%}
 
-    <li class="post-entry post-newest" itemprop="itemListElement" itemscope itemtype="http://schema.org/BlogPosting">
+    <li class="post-entry post-newest" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 {% include indeximage.html image=post.image url=post.url title=post.title author=author date=post.date %}
     <div class="post-description" itemprop="description">
 {{ site.posts[0].excerpt }}
@@ -40,9 +40,9 @@ origin: "index"
 
     {% if post.featured == true and featured != true %}
     {% assign featured= true %}
-      <li class="post-entry post-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/BlogPosting">
+      <li class="post-entry post-featured" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
     {% else %}
-      <li class="post-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/BlogPosting">
+      <li class="post-entry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
     {% endif %}
 {% include indeximage.html image=post.image url=post.url title=post.title author=author date=post.date %}
     <div class="post-description" itemprop="description">
