@@ -61,4 +61,16 @@ origin: "post"
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
   {% endif %}
+  <div class="article-foot">
+    <div class="publisher" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <img src="/assets/images/logo.png" />
+        <link itemprop="url" href="{{site.url}}"
+        <meta itemprop="width" content="426"/>
+        <meta itemprop="height" content="60"/>
+      </div>
+      <meta itemprop="name" content="{{site.title}}">
+      
+    </div>
+  </div>
 </article>
