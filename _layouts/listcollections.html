@@ -4,7 +4,7 @@ origin: "index"
 ---
 <div class="home">
   {{ content }}
-  <ul class="post-list" itemscope itemtype="http://schema.org/ItemList">
+  <ul class="post-list" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemList">
 
 {% for collection in site.collections %}
 {%- unless collection.label == "posts" -%}
@@ -24,4 +24,3 @@ origin: "index"
 {% endfor %}
   </ul>
 </div>
-

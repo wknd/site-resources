@@ -2,7 +2,7 @@
 layout: default
 origin: "post"
 ---
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="post" itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting">
 {%- comment %} this is the default behaviour if global isn't set {% endcomment -%}
 {%- if page.collection and page.collection != "posts" -%}
   {%- capture imagePath %}collections/{{ page.collection }}/{{ page.title | slugify }}/{{ page.image.name }}{% endcapture -%}
@@ -43,7 +43,7 @@ origin: "post"
   <header class="post-header">{%- if page.image %}
     <img class="post-head-image" itemprop="image" src="{{ baseimgPath }}/assets/images/{{ imagePath }}" />{%- endif %}
     <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-    <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+    <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished dateModified">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {{- page.date | date: date_format -}}
     </time>{% if author.name %}
@@ -51,6 +51,7 @@ origin: "post"
 {% else %}
     <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by <span itemprop="name">{{ author }}</span></span>
 {% endif %}
+  <link itemprop="mainEntityOfPage" href="{{ site.baseurl }}" />
   </header>
 
   <div class="article-content" itemprop="articleBody">

@@ -6,7 +6,7 @@ origin: "index"
 
   {%- assign name = page.collection -%}
   {%- assign collection = site[name] | sort: 'order' -%}
- <ul class="post-list" itemscope itemtype="http://schema.org/ItemList">
+ <ul class="post-list" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemList">
 {% for document in collection -%}
 {%- unless page.url == document.url-%}
  {%- assign checkoverview = document.title | truncate: 8, "" | downcase -%}
@@ -30,4 +30,3 @@ origin: "index"
 {% endfor %}
   </ul>
 </div>
-
