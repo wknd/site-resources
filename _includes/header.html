@@ -2,7 +2,16 @@
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
-    <a class="site-title" href="/"><img src="/assets/images/logo.png" alt="{{ site.title | escape }}" /></a>
+    <div class="publisher" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <div "site-title" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <a href="/"><img src="/assets/images/logo.png" alt="{{ site.title | escape }}" /></a>
+        <link itemprop="url" href="{{site.url}}/assets/images/logo.png" />
+        <meta itemprop="width" content="426" />
+        <meta itemprop="height" content="60" />
+      </div>
+      <meta itemprop="name" content="{{ site.title }}">
+      <link itemprop="url" href="{{ site.url }}">
+  </div>
     {%- if page_paths -%}
       <nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
