@@ -16,6 +16,10 @@
   text-decoration: none;
   &:visited { 
     color: $foreground;
+  }
+  img {
+    object-fit: cover;
+    object-position: center;
   }    
 }
 .site-nav {
