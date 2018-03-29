@@ -35,7 +35,8 @@
     <picture class="post-image" href="{{ include.url | relative_url }}">
       {%- if include.image %}
 
-      <img src="{{ image320 }}" srcset="
+      <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}" srcset="
+        {{ image320 }} 320w,
         {{ image480 }} 480w,
         {{ image800 }} 800w,
         {{ image1600 }} 1600w" itemprop="image" alt="">
