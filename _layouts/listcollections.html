@@ -12,10 +12,10 @@ origin: "index"
   {%- assign collectionindex = collection.relative_directory | append: '/index.md' -%}
   {%- assign indexpages = collection.docs | where: "relative_path", collectionindex -%}
   {%- assign indexpage = indexpages[0] %}
-    <li class="post-entry"  itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
+    <li class="post-entry"  itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
 {%- capture url -%}{{site.baseurl}}/{{ collection.label }}{% endcapture -%}
+<meta itemprop="position" content="{% increment counter %}" />
 {% include indeximage.html image=indexpage.image url=collection.label title=collection.label %}
-
     <div class="post-description" itemprop="description">
 {{ indexpage.excerpt }}
     </div>
