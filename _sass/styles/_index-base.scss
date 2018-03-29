@@ -39,7 +39,7 @@
       object-fit: cover;
       object-position: center;
       max-width: 100%;
-      /*height: $index-element-height;*/
+      height: 100%; /* $index-element-height;*/
     }
   }
   .post-click {
