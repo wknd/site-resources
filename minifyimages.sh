@@ -11,11 +11,11 @@
 
 
 
-#SEARCHDIR="/../assets/images-original/" # location of the input images
-#OUTPUTDIR="/../assets/images/" # location of the output images
+SEARCHDIR="/../assets/images-original/" # location of the input images
+OUTPUTDIR="/../assets/images/" # location of the output images
 # use below for testing
-SEARCHDIR="/../wknd.github.io/assets/images-original/global/" # location of the input images
-OUTPUTDIR="/../test/" # location of the output images
+#SEARCHDIR="/../wknd.github.io/assets/images-original/" # location of the input images
+#OUTPUTDIR="/../test/" # location of the output images
 
 SEARCHDIR=$(dirname "$0")$SEARCHDIR # make it relative to script location
 OUTPUTDIR=$(dirname "$0")$OUTPUTDIR # make it relative to script location
