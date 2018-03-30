@@ -13,6 +13,9 @@
 
 SEARCHDIR="/../assets/images-original/" # location of the input images
 OUTPUTDIR="/../assets/images/" # location of the output images
+# use below for testing
+#SEARCHDIR="/../wknd.github.io/assets/images-original/" # location of the input images
+#OUTPUTDIR="/../test/" # location of the output images
 
 SEARCHDIR=$(dirname "$0")$SEARCHDIR # make it relative to script location
 OUTPUTDIR=$(dirname "$0")$OUTPUTDIR # make it relative to script location
@@ -20,6 +23,9 @@ OUTPUTDIR=$(dirname "$0")$OUTPUTDIR # make it relative to script location
 WIDTHS=( 'original' 320 480 800 1600 )
 MARGIN=50 # margin of error in pixels
 # if image new width is in original size +- margin size then don't bother resizing
+
+LOGO="logo.png"
+# no different sizes for logo, and also more simple conversion which somehow leads to smaller size
 
 echo minifying images in "$SEARCHDIR" and placing in "$OUTPUTDIR"
 
@@ -75,15 +81,15 @@ for f in $FILES; do
             fi
         fi
 
-        if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ]; then
-            #force a recode of all the images
-            convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${RESIZE[@]}" -unsharp 0.25x0.25+8+0.065 -dither None -quality 80 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "$NEWNAME"
-            echo force minified file "$NEWNAME"
-        elif [ ! -f "$NEWNAME" ]; then
-            # only recode the image if it doesn't exist already
-            #mogrify -path "$OUTDIRECTORY" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 -thumbnail "$width" -unsharp 0.25x0.25+8+0.065 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "$f"
-            convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${RESIZE[@]}" -unsharp 0.25x0.25+8+0.065 -dither None -quality 80 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "$NEWNAME"
+        if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ] || [ ! -f "$NEWNAME" ]; then
+          
+          if [ "$OUTFILE" != "$OUTPUTDIR${LOGO#$SEARCHDIR}" ]; then
+            convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${RESIZE[@]}" -unsharp 0.25x0.25+8+0.065 -dither None -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "$NEWNAME"
             echo minified file "$NEWNAME"
+          elif [ "$width" = "original" ]; then
+            convert "$f" -strip -sampling-factor 4:2:0 -quality 80 -dither None "$OUTFILE"
+            echo "converting logo $OUTPUTDIR${LOGO#$SEARCHDIR}"
+          fi
         fi
     done
 
