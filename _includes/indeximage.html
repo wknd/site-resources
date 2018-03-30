@@ -34,13 +34,27 @@
 {%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
     <picture class="post-image" href="{{ include.url | relative_url }}">
       {%- if include.image %}
-
       <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}" srcset="
         {{ image320 }} 320w,
         {{ image480 }} 480w,
         {{ image800 }} 800w,
-        {{ image1600 }} 1600w" itemprop="image" alt="">
-
+        {{ image1600 }} 1600w"        
+        {%- if include.featured %}
+        sizes="
+        (min-width: {{ site.on-laptop }}px) 66vw,
+        (min-width: {{ site.on-tablet }}px) 50vw,
+        100vw"
+        {%- elsif include.newest %}
+        sizes="
+        (min-width: {{ site.on-laptop }}px) 100vw,
+        (min-width: {{ site.on-tablet }}px) 100vw,
+        100vw"
+        {%- else %}
+        sizes="
+        (min-width: {{ site.on-laptop }}px) 33vw,
+        (min-width: {{ site.on-tablet }}px) 50vw,
+        100vw" 
+        {%- endif %} itemprop="image" alt="">    
       {% endif %}
       <h2 class="post-title" itemprop="name{% if include.schema == "final" %} headline{% endif %}">{{ include.title | escape }}</h2>
       {% if include.date -%}

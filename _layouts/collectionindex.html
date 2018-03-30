@@ -13,15 +13,16 @@ origin: "index"
  {%- assign checkintro = document.title | truncate: 5, "" | downcase -%}
   {%- if checkoverview == "overview" and overview != true %}
     <li class="post-entry post-newest" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
+    {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" newest=true %}
     {%- assign overview = true %}
   {%- elsif checkintro == "intro" and intro != true %}
     <li class="post-entry post-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
+    {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" featured=true %}
     {%- assign intro = true %}
   {%- else %}
     <li class="post-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
+    {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" %}
   {%- endif -%}
-
-{% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" %}
     <meta itemprop="position" content="{{ document.order }}" />
     <div class="post-description" itemprop="description">
 {{ document.excerpt }}
