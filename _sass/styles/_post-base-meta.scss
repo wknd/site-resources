@@ -40,6 +40,7 @@
 
 .post-date {
   display: inline-block;
+  @include relative-font-size(0.8);
   background-color: transparentize($flash1, $transparent);
   color: $background;
   position: absolute;
@@ -52,6 +53,7 @@
 
 .post-author {
   display: inline-block;
+  @include relative-font-size(0.8);
   background-color: transparentize($background, $transparent);
   color: $foreground;
   position: absolute;
