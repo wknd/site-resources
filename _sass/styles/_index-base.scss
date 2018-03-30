@@ -59,7 +59,9 @@
 
   }
   .post-date {
-    @include relative-font-size(0.8);
+    @include on-phone {
+      @include relative-font-size(0.8);
+    }
     position: absolute;
     bottom: 0;
     top: auto;
@@ -67,7 +69,9 @@
     left: 0;
   }
   .post-author {
-    @include relative-font-size(0.8);
+    @include on-phone {
+      @include relative-font-size(0.8);
+    }
     position: absolute;
     bottom: 0;
     z-index: 2;
