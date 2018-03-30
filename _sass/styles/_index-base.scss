@@ -28,21 +28,7 @@
   color: $foreground;
   height: 100%;
   max-width: 100%;
-  .post-image {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 250px;
-    margin: 0px;
-    list-style: none;
-    img {
-      object-fit: cover;
-      object-position: center;
-      max-width: 100%;
-      flex-grow: 1;
-      height: $index-element-height;
-    }
-  }
+
   .post-click {
   /*  flex-grow: 1;
     display: inline-block;

@@ -1,10 +1,19 @@
-.post-head-image {
-  vertical-align: top;
+.post-image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
   margin: 0px;
-  padding: 0px;
-  width: 100%;
-  height: auto;
+  list-style: none;
+  img {
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+    flex-grow: 1;
+    height: $index-element-height;
+  }
 }
+
 .post-title {
   position: absolute;
   display: inline-block;
