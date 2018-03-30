@@ -127,3 +127,8 @@
     }      
   }
 }
+.article-foot {
+  color: $foreground; 
+  max-width: 100%;
+  padding-bottom: $spacing-unit/2;
+}
