@@ -51,7 +51,7 @@ origin: "post"
 {% else %}
     <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by <span itemprop="name">{{ author }}</span></span>
 {% endif %}
-  <link itemprop="mainEntityOfPage" href="{{ page.url }}" />
+  <link itemprop="mainEntityOfPage" href="{{ site.baseurl }}{{ page.url }}" />
   </header>
 
   <div class="article-content" itemprop="articleBody">
