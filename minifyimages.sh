@@ -11,11 +11,11 @@
 
 
 
-SEARCHDIR="/../assets/images-original/" # location of the input images
-OUTPUTDIR="/../assets/images/" # location of the output images
+#SEARCHDIR="/../assets/images-original/" # location of the input images
+#OUTPUTDIR="/../assets/images/" # location of the output images
 # use below for testing
-#SEARCHDIR="/../wknd.github.io/assets/images-original/" # location of the input images
-#OUTPUTDIR="/../test/" # location of the output images
+SEARCHDIR="/../wknd.github.io/assets/images-original/global/" # location of the input images
+OUTPUTDIR="/../test/" # location of the output images
 
 SEARCHDIR=$(dirname "$0")$SEARCHDIR # make it relative to script location
 OUTPUTDIR=$(dirname "$0")$OUTPUTDIR # make it relative to script location
@@ -101,12 +101,12 @@ for f in $FILES; do
                   # new height is within margin, don't change shit
                   CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"                
                   unset CROPRESIZE
-                  #echo "in bounds"
+                  #echo "in bounds height"
               else
                   # new width is outside of margin, change its size
                   CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"
-                  CROPRESIZE=( -thumbnail "x$heightplusmargin"\>)
-                  #echo "resize"
+                  CROPRESIZE=( -thumbnail "x$heightplusmargin"\> )
+                  #echo "resize height"
               fi
               CROP=( -gravity Center -crop "$widthplusmargin"x+0+0 +repage )
             else
@@ -115,12 +115,12 @@ for f in $FILES; do
                   # new width is within margin, don't change shit
                   CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"                
                   unset CROPRESIZE
-                  #echo "in bounds"
+                  #echo "in bounds width"
               else
                   # new width is outside of margin, change its size
                   CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"
                   CROPRESIZE=( -thumbnail "$width"\> )
-                  #echo "resize"
+                  #echo "resize width"
               fi
               CROP=( -gravity Center -crop x"$heightplusmargin"+0+0 +repage )
             fi
@@ -152,7 +152,7 @@ for f in $FILES; do
         if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ] || [ ! -f "$CROPNAME" ]; then
           if [ "$OUTFILE" != "$OUTPUTDIR${LOGO#$SEARCHDIR}" ] && [ "$width" != "original" ]; then
             # if its not a logo and not in original resolution, do the magic
-            convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${RESIZE[@]}" -unsharp 0.25x0.25+8+0.065 -dither None -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "${CROP[@]}" "$CROPNAME"
+            convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${CROPRESIZE[@]}" -unsharp 0.25x0.25+8+0.065 -dither None -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "${CROP[@]}" "$CROPNAME"
             echo minified and cropped file "$CROPNAME"
           fi
         fi
