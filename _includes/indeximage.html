@@ -44,8 +44,11 @@
         (min-width: {{ site.on-laptop }}px) 66vw,
         (min-width: {{ site.on-tablet }}px) 50vw,
         100vw"
-        {%- elsif include.newest or include.post %}
-        sizes="100vw"
+        {%- elsif include.newest %}
+        sizes="
+        (min-width: {{ site.on-laptop }}px) 100vw,
+        (min-width: {{ site.on-tablet }}px) 100vw,
+        100vw"
         {%- else %}
         sizes="
         (min-width: {{ site.on-laptop }}px) 33vw,
@@ -67,7 +70,5 @@
       <span class="post-author"{% if include.schema == "final" %} itemprop="author" itemscope itemtype="http://schema.org/Person"{% endif %}>Written by <span{% if include.schema == "final" %} itemprop="name"{% endif %}>{{ include.author }}</span></span>
         {% endif %}
       {% endif %}
-      {%- unless include.post %}
       <a class="post-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
-      {%- endunless %}
-    </picture>
+</picture>
