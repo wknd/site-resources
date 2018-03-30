@@ -46,7 +46,7 @@ origin: "TechArticle"
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {{- page.date | date: date_format -}}
     </time>
-    {-% if author.name %}
+    {%- if author.name %}
     <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by {% if author.page %}<a href="{{author.page}}"><span itemprop="name">{{ author.name }}</span></a>{% else %}<span itemprop="name">{{ author.name }}</span>{% endif %}</span>
       {%- else %}
     <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by <span itemprop="name">{{ author }}</span></span>

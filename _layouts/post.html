@@ -46,11 +46,12 @@ origin: "post"
     <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished dateModified">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {{- page.date | date: date_format -}}
-    </time>{% if author.name %}
+    </time>
+    {%- if author.name %}
     <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by {% if author.page %}<a href="{{author.page}}"><span itemprop="name">{{ author.name }}</span></a>{% else %}<span itemprop="name">{{ author.name }}</span>{% endif %}</span>
-{% else %}
+{%- else %}
     <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">Written by <span itemprop="name">{{ author }}</span></span>
-{% endif %}
+{%- endif %}
   <link itemprop="mainEntityOfPage" href="{{ site.baseurl }}{{ page.url }}" />
   </header>
 
