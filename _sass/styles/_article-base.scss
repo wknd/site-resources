@@ -128,9 +128,8 @@
   }
 }
 .article-foot {
+  background-color: $background-light;
   color: $foreground; 
   max-width: 100%;
   padding-bottom: $spacing-unit/2;
-  display: block;
-  clear: both;
 }
