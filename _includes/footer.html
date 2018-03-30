@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="{{ "/assets/post.css" | relative_url }}">
 {%- elsif layout.origin == "page" -%}
 <link rel="stylesheet" href="{{ "/assets/page.css" | relative_url }}">
+{%- elsif layout.origin == "TechArticle" -%}
+<link rel="stylesheet" href="{{ "/assets/techarticle.css" | relative_url }}">
 {%- else -%}
 <link rel="stylesheet" href="{{ "/assets/default.css" | relative_url }}">
 {%- endif -%}

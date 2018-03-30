@@ -14,6 +14,10 @@
 {%- capture styles -%}
 @import "post-base"
 {%- endcapture -%}
+{%- elsif layout.origin == "TechArticle" -%}
+{%- capture styles -%}
+@import "techarticle-base"
+{%- endcapture -%}
 {%- elsif layout.origin == "page" -%}
 {%- capture styles -%}
 @import "page-base"
