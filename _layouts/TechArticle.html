@@ -1,0 +1,26 @@
+---
+layout: default
+origin: "page"
+---
+<article class="page" itemprop="mainEntity" itemscope itemtype="http://schema.org/TechArticle">
+  <header class="page-header">
+    <link itemprop="mainEntityOfPage" href="{{ page.url }}" />
+    <h1 class="page-title">{{ page.title | escape }}</h1>
+  </header>
+
+  <div class="article-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+  <div class="article-foot">
+    <div class="publisher" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        <img src="/assets/images/logo.png" alt="{{ site.title }}"/>
+        <link itemprop="url" href="{{site.url}}/assets/images/logo.png" />
+        <meta itemprop="width" content="426" />
+        <meta itemprop="height" content="60" />
+      </div>
+      <meta itemprop="name" content="{{ site.title }}">
+      <link itemprop="url" href="{{ site.url }}">
+    </div>
+  </div>
+</article>
