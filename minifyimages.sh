@@ -60,18 +60,18 @@ for f in $FILES; do
         if [ "$width" = "original" ]; then
                 NEWNAME="$OUTFILE"
                 unset RESIZE
-                echo "original"
+                #echo "original"
         else
             if [ "$width" -gt "$lowerbound" ] && [ "$width" -lt "$upperbound" ]; then
                 # new with is within margin, don't change shit
                 NEWNAME="$OUTNAME-$width.$OUTEXT"
                 unset RESIZE
-                echo "in bounds"
+                #echo "in bounds"
             else
                 # new with is outside of margin, change its size
                 NEWNAME="$OUTNAME-$width.$OUTEXT"
                 RESIZE=( -thumbnail "$width"\> )
-                echo "resize"
+                #echo "resize"
             fi
         fi
 
