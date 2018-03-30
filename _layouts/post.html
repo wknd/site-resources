@@ -3,15 +3,26 @@ layout: default
 origin: "post"
 ---
 <article class="post" itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting">
+{%- comment -%} gotta have an author for a post, if not set lets find one {%- endcomment -%}
+{%- if page.author -%}
+  {%- if site.data.authors[page.author] -%}
+    {%- assign author = site.data.authors[page.author] -%}
+  {%- else -%}
+    {%- assign author = page.author -%}
+  {%- endif -%}
+{%- elsif site.data.authors[site.author] -%}
+  {%- assign author = site.data.authors[site.author] -%}
+{%- else -%}
+  {%- assign author = site.author -%}
+{%- endif %}
   <header class="post-header">{%- if page.image %}
-    {% include indeximage.html image=indexpage.image url=collection.label title=collection.label post=true %}
-    <link itemprop="mainEntityOfPage" href="{{ site.baseurl }}{{ page.url }}" />
+    {% include indeximage.html image=page.image title=page.title author=author date=page.date featured=true %}
+    {%- endif %}
+  <link itemprop="mainEntityOfPage" href="{{ site.baseurl }}{{ page.url }}" />
   </header>
-
   <div class="article-content" itemprop="articleBody">
     {{ content }}
   </div>
-
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
   {% endif %}

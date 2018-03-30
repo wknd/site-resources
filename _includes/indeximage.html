@@ -32,7 +32,7 @@
 {%- assign image480 = imgReversed | replace_first: '.', size480 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image800 = imgReversed | replace_first: '.', size800 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
-    <picture class="post-image" href="{{ include.url | relative_url }}">
+    <picture class="post-image">
       {%- if include.image %}
       <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}" srcset="
         {{ image320 }} 320w,
@@ -44,11 +44,8 @@
         (min-width: {{ site.on-laptop }}px) 66vw,
         (min-width: {{ site.on-tablet }}px) 50vw,
         100vw"
-        {%- elsif include.newest %}
-        sizes="
-        (min-width: {{ site.on-laptop }}px) 100vw,
-        (min-width: {{ site.on-tablet }}px) 100vw,
-        100vw"
+        {%- elsif include.newest or include.post %}
+        sizes="100vw"
         {%- else %}
         sizes="
         (min-width: {{ site.on-laptop }}px) 33vw,
@@ -70,5 +67,7 @@
       <span class="post-author"{% if include.schema == "final" %} itemprop="author" itemscope itemtype="http://schema.org/Person"{% endif %}>Written by <span{% if include.schema == "final" %} itemprop="name"{% endif %}>{{ include.author }}</span></span>
         {% endif %}
       {% endif %}
+      {%- if include.url %}
       <a class="post-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
-</picture>
+      {%- endif %}
+    </picture>
