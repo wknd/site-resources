@@ -29,6 +29,8 @@
 {%- endif %}
 {%- capture backgroundimage %}
 $background-img: "{{ site.background-image }}";
+$on-tablet:        {{ site.on-tablet }}px !default;
+$on-laptop:        {{ site.on-laptop }}px !default;
 {% endcapture -%}
 {% assign fullstyles = styles | prepend: backgroundimage %}
 <style>
