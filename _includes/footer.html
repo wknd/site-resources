@@ -3,16 +3,32 @@
     <a href="{{ "/" | relative_url }}">{{- site.title | escape }}</a>{% if site.github %} is created and maintained by {% include icon-github.html %} and is available on <a href="{{ site.github.repository_url }}">github.</a>
     {%- endif -%}<br />
   </div>
-{%- if layout.origin == "index" -%}
-<link rel="stylesheet" href="{{ "/assets/index.css" | relative_url }}">
-{%- elsif layout.origin == "post" -%}
-<link rel="stylesheet" href="{{ "/assets/post.css" | relative_url }}">
-{%- elsif layout.origin == "page" -%}
-<link rel="stylesheet" href="{{ "/assets/page.css" | relative_url }}">
-{%- elsif layout.origin == "TechArticle" -%}
-<link rel="stylesheet" href="{{ "/assets/techarticle.css" | relative_url }}">
-{%- else -%}
-<link rel="stylesheet" href="{{ "/assets/default.css" | relative_url }}">
-{%- endif -%}
-
+  {%- if layout.origin == "index" -%}
+  {% assign sheet = "/assets/index.css" | relative_url %}
+  {%- elsif layout.origin == "post" -%}
+  {% assign sheet = "/assets/post.css" | relative_url %}
+  {%- elsif layout.origin == "page" -%}
+  {% assign sheet = "/assets/page.css" | relative_url %}
+  {%- elsif layout.origin == "TechArticle" -%}
+  {% assign sheet = "/assets/techarticle.css" | relative_url %}
+  {%- else -%}
+  {% assign sheet = "/assets/default.css" | relative_url %}
+  {%- endif %}
+  <noscript id="deferred-styles">
+   <link rel="stylesheet" type="text/css" href="{{ sheet }}}}"/>
+ </noscript>
+ <script>
+   var loadDeferredStyles = function() {
+     var addStylesNode = document.getElementById("deferred-styles");
+     var replacement = document.createElement("div");
+     replacement.innerHTML = addStylesNode.textContent;
+     document.body.appendChild(replacement)
+     addStylesNode.parentElement.removeChild(addStylesNode);
+   };
+   var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+       window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+   if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+   else window.addEventListener('load', loadDeferredStyles);
+ </script>
+ 
 </footer>
