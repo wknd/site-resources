@@ -10,4 +10,9 @@
   padding: 0px;
   margin: 0px 0px $spacing-unit / 2;
   width: 100%;
+  .post-image {
+    img {
+      height: ($index-element-height * 2);
+    }
+  }
 }
