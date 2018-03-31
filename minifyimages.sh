@@ -11,11 +11,11 @@
 
 
 
-#SEARCHDIR="/../assets/images-original/" # location of the input images
-#OUTPUTDIR="/../assets/images/" # location of the output images
+SEARCHDIR="/../assets/images-original/" # location of the input images
+OUTPUTDIR="/../assets/images/" # location of the output images
 # use below for testing
-SEARCHDIR="/../wknd.github.io/assets/images-original/" # location of the input images
-OUTPUTDIR="/../test/" # location of the output images
+#SEARCHDIR="/../wknd.github.io/assets/images-original/" # location of the input images
+#OUTPUTDIR="/../test/" # location of the output images
 
 SEARCHDIR=$(dirname "$0")$SEARCHDIR # make it relative to script location
 OUTPUTDIR=$(dirname "$0")$OUTPUTDIR # make it relative to script location
@@ -140,7 +140,7 @@ for f in $FILES; do
         if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ] || [ ! -f "$NEWNAME" ]; then
           if [ "$OUTFILE" != "$OUTPUTDIR${LOGO#$SEARCHDIR}" ]; then
             # don't resize logo to weirdo widths
-            convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${RESIZE[@]}" -unsharp 0.25x0.25+8+0.065 -dither None -quality 80 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "$NEWNAME"
+            convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${RESIZE[@]}" -unsharp 0.25x0.25+8+0.065 -dither None -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "$NEWNAME"
             echo minified file "$NEWNAME"
           elif [ "$width" = "original" ]; then
             # don't resize for original or logo
