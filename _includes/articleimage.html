@@ -72,7 +72,7 @@
   "
   {%- endif %}
 {% if include.alt %} alt="{{ include.alt }}" {% endif -%}
-{%- if include.width -%}{%- unless rel == '%' %} width="{{ include.width }}" {% endunless -%}{%- endif -%}{%- if include.height %} style="max-height: {{ include.height }};" {% endif %}/>
+{%- if include.width -%}{%- unless rel == '%' %}{% if include.height %} max-{% endif %}width="{{ include.width }}" {% endunless -%}{%- endif -%}{%- if include.height %} style="max-height: {{ include.height }};" {% endif %}/>
   </a>
 {% if include.caption -%}
   <figcaption>{{ include.caption }}</figcaption>
