@@ -56,8 +56,8 @@
       {%- assign relwidth = include.width | replace: '%','' | plus: 0 %}
       {%- if include.float %}
   sizes="
-  (min-width: {{ site.on-laptop }}px) {% if relwidth >= 66 %}66vw{% else %}{{ relwidth }}vw{% endif %},
-  (min-width: {{ site.on-tablet }}px) {% if relwidth >= 50 %}50vw{% else %}{{ relwidth }}vw{% endif %},
+  (min-width: {{ site.on-laptop }}px) {% if relwidth >= 60 %}60vw{% else %}{{ relwidth | minus: 4 }}vw{% endif %},
+  (min-width: {{ site.on-tablet }}px) {% if relwidth >= 45 %}45vw{% else %}{{ relwidth | minus: 4 }}vw{% endif %},
   100vw" {%- else %}
   sizes="
   (min-width: {{ site.on-tablet }}px) {{ relwidth }}vw,
@@ -66,8 +66,8 @@
   sizes="{{ include.width }}"
   {%- elsif include.float %}
   sizes="
-  (min-width: {{ site.on-laptop }}px) 66vw,
-  (min-width: {{ site.on-tablet }}px) 50vw,
+  (min-width: {{ site.on-laptop }}px) 60vw,
+  (min-width: {{ site.on-tablet }}px) 45vw,
   100vw
   "
   {%- endif %}
