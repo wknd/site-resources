@@ -44,16 +44,16 @@
         {{ image1600 }} 1600w"        
         {%- if include.featured %}
         sizes="
-        (min-width: {{ site.on-laptop }}px) 70vw,
-        (min-width: {{ site.on-tablet }}px) 55vw,
-        105vw"
+        (min-width: {{ site.on-laptop }}px) 66vw,
+        (min-width: {{ site.on-tablet }}px) 50vw,
+        100vw"
         {%- elsif include.newest or include.post %}
-        sizes="105vw"
+        sizes="100vw"
         {%- else %}
         sizes="
-        (min-width: {{ site.on-laptop }}px) 40vw,
-        (min-width: {{ site.on-tablet }}px) 55vw,
-        105vw" 
+        (min-width: {{ site.on-laptop }}px) 33vw,
+        (min-width: {{ site.on-tablet }}px) 50vw,
+        100vw" 
         {%- endif %} itemprop="image" alt="">    
       {% endif %}
       <h2 class="post-title" itemprop="name{% if include.schema == "final" %} headline{% endif %}">{{ include.title | escape }}</h2>
