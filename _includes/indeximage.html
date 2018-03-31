@@ -27,10 +27,12 @@
 {%- assign size320 = "-cropped-320." | split: "" | reverse | join: "" -%}
 {%- assign size480 = "-cropped-480." | split: "" | reverse | join: "" -%}
 {%- assign size800 = "-cropped-800." | split: "" | reverse | join: "" -%}
+{%- assign size1200 = "-cropped-800." | split: "" | reverse | join: "" -%}
 {%- assign size1600 = "-cropped-1600." | split: "" | reverse | join: "" -%}
 {%- assign image320 = imgReversed | replace_first: '.', size320 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image480 = imgReversed | replace_first: '.', size480 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image800 = imgReversed | replace_first: '.', size800 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
+{%- assign image1200 = imgReversed | replace_first: '.', size1200 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
     <picture class="post-image">
       {%- if include.image %}
@@ -38,19 +40,20 @@
         {{ image320 }} 320w,
         {{ image480 }} 480w,
         {{ image800 }} 800w,
+        {{ image800 }} 1200w,
         {{ image1600 }} 1600w"        
         {%- if include.featured %}
         sizes="
         (min-width: {{ site.on-laptop }}px) 70vw,
         (min-width: {{ site.on-tablet }}px) 55vw,
-        110vw"
+        105vw"
         {%- elsif include.newest or include.post %}
-        sizes="110vw"
+        sizes="105vw"
         {%- else %}
         sizes="
         (min-width: {{ site.on-laptop }}px) 40vw,
         (min-width: {{ site.on-tablet }}px) 55vw,
-        110vw" 
+        105vw" 
         {%- endif %} itemprop="image" alt="">    
       {% endif %}
       <h2 class="post-title" itemprop="name{% if include.schema == "final" %} headline{% endif %}">{{ include.title | escape }}</h2>
