@@ -62,7 +62,7 @@
   sizes="
   (min-width: {{ site.on-tablet }}px) {{ relwidth }}vw,
   100vw" {%- endif -%}
-  {%- elseif include.width %}
+  {%- elsif include.width %}
   sizes="{{ include.width }}"
   {%- elsif include.float %}
   sizes="
