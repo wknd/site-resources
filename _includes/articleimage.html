@@ -53,7 +53,7 @@
   {{ image1200 }} 1200w,
   {{ image1600 }} 1600w
   " {%- if include.width and rel == '%' -%} 
-      {%- assign relwidth = include.width | replace: '%','' %}
+      {%- assign relwidth = include.width | replace: '%','' | plus: 0 %}
       {%- if include.float %}
   sizes="
   (min-width: {{ site.on-laptop }}px) {% if relwidth >= 66 %}66vw{% else %}{{ relwidth }}vw{% endif %},
