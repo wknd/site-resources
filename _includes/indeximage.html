@@ -1,10 +1,10 @@
 {%- comment %} this is the default behaviour if global isn't set {% endcomment -%}
 {%- if page.collection and page.collection != "posts" -%}
-  {%- capture imagePath %}collections/{{ page.collection }}/{{ page.title | slugify }}/{{ include.image.name }}{% endcapture -%}
+  {%- capture imagePath %}collections/{{ page.collection }}/{{ include.title | slugify }}/{{ include.image.name }}{% endcapture -%}
   {%- assign baseimgPath = site.baseurl -%}
 {%- else -%}
   {%- assign baseimgPath = site.baseurl -%}
-  {%- capture imagePath %}posts/{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}/{{ include.image.name }}{% endcapture -%}
+  {%- capture imagePath %}posts/{{ include.date | date: "%Y-%m-%d" }}-{{ include.title | slugify }}/{{ include.image.name }}{% endcapture -%}
 {%- endif -%}
 {%- comment %} behaviour if global is specified {% endcomment -%}
 {%- if include.image.global -%}
