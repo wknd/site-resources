@@ -11,20 +11,22 @@
 
 
 
-SEARCHDIR="/../assets/images-original/" # location of the input images
-OUTPUTDIR="/../assets/images/" # location of the output images
+#SEARCHDIR="/../assets/images-original/" # location of the input images
+#OUTPUTDIR="/../assets/images/" # location of the output images
 # use below for testing
-#SEARCHDIR="/../wknd.github.io/assets/images-original/" # location of the input images
-#OUTPUTDIR="/../test/" # location of the output images
+SEARCHDIR="/../wknd.github.io/assets/images-original/" # location of the input images
+OUTPUTDIR="/../test2/" # location of the output images
 
 SEARCHDIR=$(dirname "$0")$SEARCHDIR # make it relative to script location
 OUTPUTDIR=$(dirname "$0")$OUTPUTDIR # make it relative to script location
 
-WIDTHS=( 'original' 320 480 800 1200 1600 )
+WIDTHS=( 'original' 1900 1600 1200 800 480 320 ) # do this in order from large to small
+# so we can compare if a smaller resolution is actually a smaller size (and if not we won't use it)
+
 WIDTHMARGIN=50 # margin of error in pixels
 HEIGHTMARGIN=25
 # if image new width is in original size +- margin size then don't bother resizing
-MAXHEIGHT=400
+MAXHEIGHT=600
 MAXWIDTH=1500
 # images used to display posts need to not only match a certain width, but also get cropped
 # HEIGHT is the max height the images are displayed at
@@ -65,6 +67,12 @@ for f in $FILES; do
     
     heightplusmargin=$((HEIGHTMARGIN + MAXHEIGHT))
     # create smaller images too
+    
+    PREVNAME="$f"
+    PREVSIZE=$(stat -c%s "$PREVNAME")
+    PREVCROPNAME="$f"
+    PREVCROPSIZE=$PREVSIZE
+    
     for width in "${WIDTHS[@]}"
     do
         widthupperbound=$((FILEWIDTH + WIDTMARGIN))
@@ -79,6 +87,9 @@ for f in $FILES; do
         #echo "new width: $width"
         if [ "$width" = "original" ]; then
                 NEWNAME="$OUTFILE"
+                CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"
+                # ^ this name needs to be set or we don't go into the if statement for cropped stuff for the original
+                # but we want to go in there so we can set the size reference to the minified non cropped image
                 unset RESIZE
                 unset CROP
                 unset CROPRESIZE
@@ -105,7 +116,7 @@ for f in $FILES; do
               else
                   # new width is outside of margin, change its size
                   CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"
-                  CROPRESIZE=( -thumbnail "x$heightplusmargin"\> )
+                  CROPRESIZE=( -thumbnail "x$MAXHEIGHT"\> )
                   #echo "resize height"
               fi
               CROP=( -gravity Center -crop "$widthplusmargin"x+0+0 +repage )
@@ -122,7 +133,7 @@ for f in $FILES; do
                   CROPRESIZE=( -thumbnail "$width"\> )
                   #echo "resize width"
               fi
-              CROP=( -gravity Center -crop x"$heightplusmargin"+0+0 +repage )
+              CROP=( -gravity Center -crop x"$MAXHEIGHT"+0+0 +repage )
             fi
             if [ "$width" -gt "$widthlowerbound" ] && [ "$width" -lt "$widthupperbound" ]; then
                 # new width is within margin, don't change shit
@@ -137,25 +148,55 @@ for f in $FILES; do
             fi
         fi
         # for resized images
-        if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ] || [ ! -f "$NEWNAME" ]; then
+        if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ] || [ ! -e "$NEWNAME" ]; then
           if [ "$OUTFILE" != "$OUTPUTDIR${LOGO#$SEARCHDIR}" ]; then
             # don't resize logo to weirdo widths
             convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${RESIZE[@]}" -unsharp 0.25x0.08+8.3+0.045 -dither None -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "$NEWNAME"
             echo minified file "$NEWNAME"
           elif [ "$width" = "original" ]; then
-            # don't resize for original or logo
-            convert "$f" -strip -sampling-factor 4:2:0 -quality 80 -dither None "$OUTFILE"
-            echo "converting logo $OUTPUTDIR${LOGO#$SEARCHDIR}"
+            # resize logo, but only do it once
+            convert "$f" -strip -sampling-factor 4:2:0 -quality 80 -dither None "$NEWNAME"
+            echo "converting logo $NEWNAME"
+          fi
+          if [ "$OUTFILE" != "$OUTPUTDIR${LOGO#$SEARCHDIR}" ] || [ "$width" = "original" ]; then
+            SIZE=$(stat -c%s "$NEWNAME")
+            #echo "size: $SIZE"
+            if (( SIZE >= PREVSIZE )); then
+              # oh shit this new conversion is actually worse than the previous one! UNDO IT!
+              rm "$NEWNAME" # delete the shit file
+              ln -sr "$PREVNAME" "$NEWNAME"
+              # will this link be relative enough? or do I require more magic   
+              echo "negative sizeimprovement, linking $NEWNAME to $PREVNAME instead"         
+            fi
+            PREVNAME="$NEWNAME"
+            PREVSIZE=$SIZE
           fi
         fi
         # for cropped images
-        if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ] || [ ! -f "$CROPNAME" ]; then
+        if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ] || [ ! -e "$CROPNAME" ]; then
           if [ "$OUTFILE" != "$OUTPUTDIR${LOGO#$SEARCHDIR}" ] && [ "$width" != "original" ]; then
             # if its not a logo and not in original resolution, do the magic
             convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${CROPRESIZE[@]}" -unsharp 0.25x0.25+8+0.065 -dither None -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "${CROP[@]}" "$CROPNAME"
             echo minified and cropped file "$CROPNAME"
+            CROPSIZE=$(stat -c%s "$CROPNAME")
+            #echo "size cropped: $CROPSIZE"
+            if (( CROPSIZE >= PREVCROPSIZE )); then
+              # oh shit this new conversion is actually worse than the previous one! UNDO IT!
+              rm "$CROPNAME" # delete the shit file
+              ln -sr "$PREVCROPNAME" "$CROPNAME"
+              echo "negative sizeimprovement with cropping, linking $CROPNAME to $PREVCROPNAME instead"
+              # will this link be relative enough? or do I require more magic            
+            fi
+            PREVCROPNAME="$CROPNAME"
+            PREVCROPSIZE=$CROPSIZE
+          elif [ "$width" = "original" ]; then
+            # we're not resizing the original, but we do want to compare  size of minified original resolution to the next cropped one
+            PREVCROPNAME="$PREVNAME"
+            PREVCROPSIZE=$PREVSIZE
+            echo "using $PREVNAME as reference for cropped stuff next time, size: $PREVCROPSIZE"
           fi
         fi
+
     done
 
 done

@@ -39,11 +39,13 @@
 {%- assign size800 = "-800." | split: "" | reverse | join: "" -%}
 {%- assign size1200 = "-1200." | split: "" | reverse | join: "" -%}
 {%- assign size1600 = "-1600." | split: "" | reverse | join: "" -%}
+{%- assign size1900 = "-1900." | split: "" | reverse | join: "" -%}
 {%- assign image320 = imgReversed | replace_first: '.', size320 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image480 = imgReversed | replace_first: '.', size480 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image800 = imgReversed | replace_first: '.', size800 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1200 = imgReversed | replace_first: '.', size1200 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
+{%- assign image1900 = imgReversed | replace_first: '.', size1900 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 
   <a href="{{ baseimgPath }}/assets/images-original/{{ imagePath }}">
   <img src="{{ image1600 }}" srcset="
@@ -51,7 +53,8 @@
   {{ image480 }} 480w,
   {{ image800 }} 800w,
   {{ image1200 }} 1200w,
-  {{ image1600 }} 1600w
+  {{ image1600 }} 1600w,
+  {{ image1900 }} 1900w
   " {%- if include.width and rel == '%' -%} 
       {%- assign relwidth = include.width | replace: '%','' | plus: 0 %}
       {%- if include.float %}
