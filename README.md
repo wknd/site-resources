@@ -27,11 +27,10 @@ In case you don't have it already
 ```
 sudo apt-get install image-magick
 ```
-That should provide the ```mogrify``` binary.
+That should provide the ```convert``` binary.
 
 When you add new images you should run the ``` minifyimages.sh``` script. The script will take all the images in the ```../assets/images-original/``` folder, 
 minify them and put them in the ```../assets/images/``` folder if they don't already exist. It will also create the required subdirectories as needed.
 This could possibly be further automated with some git hooks but that is a bit of a pain.
 
-
-
+This script also generates the images at different resolutions (a normal resized one for use in articles, and one that is resized and cropped to a height of 600px high for use in index pages), however the images are not guaranteed to be that lower resolution! If the resized image has a larger filesize than one resized at a larger size, the script will instead symlink to that smaller file which has a larger resolution.
