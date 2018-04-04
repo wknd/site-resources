@@ -28,19 +28,19 @@
   color: $foreground;
   height: 100%;
   max-width: 100%;
-
-  .article-click {
-  /*  flex-grow: 1;
-    display: inline-block;
-    z-index: 1; */
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    margin: 0px;
-    padding: 0px;
-  }
+  
+    .article-click {
+    /*  flex-grow: 1;
+      display: inline-block;
+      z-index: 1; */
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      margin: 0px;
+      padding: 0px;
+    }
   .article-title {
     position: absolute;
     box-sizing: border-box;

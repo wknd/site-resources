@@ -97,14 +97,16 @@
       {% endif %}
       {%- if include.url %}
       <a class="article-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
+      {%- elsif include.article -%}
+      <a class="article-click" href="{{ baseimgPath }}/assets/images-original/{{ imagePath }}"></a>
       {%- endif %}    
   </figure>
   {% if include.article %}
     {% if image.description or image.name -%}
-      <div class="article-image-info">
-        {%- if image.name -%} Image '{{ image.name }}'
-        {%- elsif image.description -%} Image '{{ image.description }}' <br />
-        {%- elsif image.creator -%} Image
+      <div class="article-image-info"><a href="{{ baseimgPath }}/assets/images-original/{{ imagePath }}">
+        {%- if image.name -%} Image:</a> '{{ image.name }}'
+        {%- elsif image.description -%} Image:</a> '{{ image.description }}' <br />
+        {%- elsif image.creator -%} Image</a>
         {%- endif -%}
         {%- if image.creator%}
           {%- if image.creatorurl %} by <a href="{{ image.creatorurl }}">{{ image.creator }}</a>
