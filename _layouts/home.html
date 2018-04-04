@@ -22,7 +22,7 @@ origin: "index"
     <li class="article-entry article-newest" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
     <meta itemprop="position" content="{% increment counter %}" />
 {% include indeximage.html image=post.image url=post.url title=post.title author=author date=post.date newest=true %}
-    <div class="post-description" itemprop="description">
+    <div class="article-description" itemprop="description">
 {{ site.posts[0].excerpt }}
     </div>
 </li>
