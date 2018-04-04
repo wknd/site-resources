@@ -147,6 +147,8 @@
     margin-bottom: $spacing-unit;
     width: 100%;
     background-color: $background;
+    color: $foreground;
+    @include relative-font-size(0.7);
   }
   
   @include on-tablet {
