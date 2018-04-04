@@ -77,12 +77,15 @@
 {%- if include.image.description %} alt="{{ include.image.description }}"{% elsif include.image.name %} alt="{{ include.image.name }}"{% endif -%}
 {%- if include.width -%}{%- unless rel == '%' %}{% if include.height %} max-{% endif %}width="{{ include.width }}" {% endunless -%}{%- endif -%}{%- if include.height %} style="max-height: {{ include.height }};" {% endif %} />
   </a>
-{% if include.image.description -%}
-  <figcaption>{{ include.image.description }}
-    {%- if include.image.creator%}{% if include.image.name %}<br />'{{ include.image.name }}' by
-    {%- else -%}<br />Original by{% endif %}
-      {%- if include.image.creatorurl %} <a href="{{ include.image.creatorurl }}">{{ include.image.creator }}</a>
-      {%- else %} {{ include.image.creator }}
+{% if include.image.description or include.image.name -%}
+  <figcaption>
+    {%- if include.image.name -%}'{{ include.image.name }}'
+    {%- elsif include.image.description -%} '{{ include.image.description }}' <br />
+    {%- elsif include.image.creator -%} Image
+    {%- endif -%}
+    {%- if include.image.creator%}
+      {%- if include.image.creatorurl %} by <a href="{{ include.image.creatorurl }}">{{ include.image.creator }}</a>
+      {%- else %} by {{ include.image.creator }}
       {%- endif -%}
     {%- endif -%}
     {%- if include.image.license %}
