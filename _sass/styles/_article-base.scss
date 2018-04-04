@@ -63,24 +63,11 @@
   h6 {
     @include relative-font-size(1.2);
   }
-/*
-  not needed anymore, moved to _base  
-  ol {
-    list-style-position: inside;
-  }
-  ul {
-    list-style-position: inside;
-  }*/
 
-  
   figure {
-    display: table;
+    display: block;
     box-sizing: border-box;
     background: $background;
-    max-width: 100%;
-    max-height: 100%;
-    margin-left: auto;
-    margin-right: auto;
     padding: 0px;
     height: auto;
     clear: both;
@@ -89,16 +76,18 @@
     }
   }
   
-  img, figcaption {
-    display: table-row;
-    
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   figcaption {
     @include relative-font-size(0.7);
     text-align: center;
   }
-
 
   figure:not(.article-float-img-right, .article-float-img-left) {
     width: 100%;
