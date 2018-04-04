@@ -85,7 +85,7 @@
   }
   
   figcaption {
-    display: inline-block;
+    display: inline;
     @include relative-font-size(0.7);
     text-align: center;
   }
