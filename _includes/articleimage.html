@@ -74,10 +74,16 @@
   100vw
   "
   {%- endif %}
-{% if include.alt %} alt="{{ include.alt }}" {% endif -%}
+{% if include.alt %} alt="{{ include.image.description }}" {% endif -%}
 {%- if include.width -%}{%- unless rel == '%' %}{% if include.height %} max-{% endif %}width="{{ include.width }}" {% endunless -%}{%- endif -%}{%- if include.height %} style="max-height: {{ include.height }};" {% endif %}/>
   </a>
-{% if include.caption -%}
-  <figcaption>{{ include.caption }}</figcaption>
+{% if include.image.description -%}
+  <figcaption>{{ include.image.description }}
+    {%- if include.image.creator %} Original by
+      {%- if include.image.creatorurl %} <a href="{{ include.image.creatorurl }}">{{ include.image.creator }}</a>
+      {%- else %} {{ include.image.creator }}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if include.image.licence %} Licence: include.image.licence {% endif %}</figcaption>
 {%- endif -%}
 </figure>
