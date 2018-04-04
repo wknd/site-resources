@@ -79,7 +79,7 @@
   </a>
 {% if include.image.description -%}
   <figcaption>{{ include.image.description }}
-    {%- if include.image.creator %} Original by
+    {%- if include.image.creator %}<br />Original by
       {%- if include.image.creatorurl %} <a href="{{ include.image.creatorurl }}">{{ include.image.creator }}</a>
       {%- else %} {{ include.image.creator }}
       {%- endif -%}
