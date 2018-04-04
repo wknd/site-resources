@@ -91,6 +91,9 @@
     }
 
   }
+  figcaption {
+    @include relative-font-size(0.7);
+  }
 
 
   figure:not(.article-float-img-right, .article-float-img-left) {
