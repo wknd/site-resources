@@ -85,6 +85,27 @@
       {%- else %} {{ include.image.creator }}
       {%- endif -%}
     {%- endif -%}
-    {%- if include.image.license %} Image license: {{ include.image.license}}{% endif %}</figcaption>
+    {%- if include.image.license %}
+      {%- assign licensename = include.image.license -%}
+      {%- assign license = site.data.licenses[licensename] -%}
+      <br /><small>Image license: 
+      {%- if license -%}{%- comment %}found in our license db{% endcomment -%}
+        {%- if license.url -%}
+          <a rel="license" href="{{ license.url }}">{{ license.name }}</a>
+        {%- else -%}
+          {{ license.name }}
+        {% endif %}
+      {%- elsif include.image.license.name -%}{%- comment %}not found in our license db, but specified in image{% endcomment -%}
+      {%- if include.image.license.url -%}
+        <a rel="license" href="{{ include.image.license.url }}">{{ include.image.license.name }}</a>
+      {%- else -%}
+        {{ include.image.license.name }}
+      {% endif %}
+      {%- else -%}{%- comment %}not found in our license db only name given{% endcomment -%}
+        {{ include.image.license }}
+      {%- endif -%}
+    </small>
+    {% endif -%}
+   </figcaption>
 {%- endif -%}
 </figure>

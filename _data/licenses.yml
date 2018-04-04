@@ -8,23 +8,23 @@ CC-BY:
   url: "https://creativecommons.org/licenses/by/4.0/"
 CC-BY-SA:
   shortname: "CC BY-SA"
-  name: "Creative Commons Attribution-ShareAlike"
+  name: "Creative Commons Attribution Share-Alike"
   url: "https://creativecommons.org/licenses/by-sa/4.0/"
 CC-BY-ND:
   shortname: "CC BY-ND"
-  name: "Creative Commons Attribution-NoDeivs"
+  name: "Creative Commons Attribution No-Derivs"
   url: "https://creativecommons.org/licenses/by-nd/4.0"
 CC-BY-NC:
   shortname: "CC BY-NC"
-  name: "Creative Commons Attribution-NonCommercial"
+  name: "Creative Commons Attribution Non-Commercial"
   url: "https://creativecommons.org/licenses/by-nc/4.0"
 CC-BY-NC-SA:
   shortname: "CC BY-NC-SA"
-  name: "Creative Commons Attribution-NonCommercial-ShareAlike"
+  name: "Creative Commons Attribution Non-Commercial Share-Alike"
   url: "https://creativecommons.org/licenses/by-nc-sa/4.0"
 CC-BY-NC-ND:
   shortname: "CC BY-NC-ND"
-  name: "Creative Commons Attribution-NonCommercial-NoDerivs"
+  name: "Creative Commons Attribution NonCommercial No-Derivs"
   url: "https://creativecommons.org/licenses/by-nc-nd/4.0"
 MIT:
   shortname: "MIT"
