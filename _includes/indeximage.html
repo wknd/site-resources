@@ -60,7 +60,7 @@
 {%- assign image1900 = imgReversed | replace_first: '.', size1900 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
   <figure class="article-image">
       {%- if image %}
-    <div class="article-image-container">
+    {% if include.article %}<div class="article-image-container">{% endif %}
       <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}" srcset="
         {{ image320 }} 320w,
         {{ image480 }} 480w,
@@ -99,7 +99,7 @@
       {%- if include.url %}
       <a class="article-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
       {%- endif %}
-    </div>
+    {% if include.article %}</div>{% endif %}
     {% if include.article %}
       <figcaption>
       {%- if image.creator %}
