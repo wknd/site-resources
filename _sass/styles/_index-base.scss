@@ -3,7 +3,7 @@
     background-color: transparentize($background-light, $transparent);
     padding: $spacing-unit / 2;
 }
-.post-list {
+.article-list {
   list-style: none;
   display: grid;
 
@@ -23,13 +23,13 @@
   justify-items: stretch;
   justify-content: stretch;
 }
-.post-entry {
+.article-entry {
   background-color: $background-light;
   color: $foreground;
   height: 100%;
   max-width: 100%;
 
-  .post-click {
+  .article-click {
   /*  flex-grow: 1;
     display: inline-block;
     z-index: 1; */
@@ -41,7 +41,7 @@
     margin: 0px;
     padding: 0px;
   }
-  .post-title {
+  .article-title {
     position: absolute;
     box-sizing: border-box;
     top: 0px;
@@ -58,7 +58,7 @@
     }
 
   }
-  .post-date {
+  .article-date {
     @include on-phone {
       @include relative-font-size(0.8);
     }
@@ -68,7 +68,7 @@
     right: auto;
     left: 0;
   }
-  .post-author {
+  .article-author {
     @include on-phone {
       @include relative-font-size(0.8);
     }
@@ -81,40 +81,40 @@
   }
 
 }
-.post-newest {
+.article-newest {
   grid-column: 1 / -1;
   grid-row: 1 / 2;
   @include on-tablet {
     min-height: $index-element-height;
-    .post-image {
+    .article-image {
       height: 100%;
     }
-    .post-description {
+    .article-description {
       display: none !important;
     }
-    .post-title {
+    .article-title {
       @include relative-font-size(2.0);
     }
   }
   @include on-laptop {
-    .post-title {
+    .article-title {
       @include relative-font-size(2.4);
     }
   }
 }
-.post-featured {
+.article-featured {
   grid-column: 1 / -2;
   grid-row: 2 / 3;
   @include on-laptop {
-    .post-image {
+    .article-image {
       height: 100%;
     }
-    .post-description {
+    .article-description {
       display: none !important;
     }
   }
 }
-.post-description {
+.article-description {
   display: block;
   padding: ($spacing-unit / 3);
   a {

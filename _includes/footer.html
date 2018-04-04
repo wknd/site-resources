@@ -5,12 +5,10 @@
   </div>
   {%- if layout.origin == "index" -%}
   {% assign sheet = "/assets/index.css" | relative_url %}
-  {%- elsif layout.origin == "post" -%}
-  {% assign sheet = "/assets/post.css" | relative_url %}
   {%- elsif layout.origin == "page" -%}
   {% assign sheet = "/assets/page.css" | relative_url %}
-  {%- elsif layout.origin == "TechArticle" -%}
-  {% assign sheet = "/assets/techarticle.css" | relative_url %}
+  {%- elsif layout.origin == "article" -%}
+  {% assign sheet = "/assets/article.css" | relative_url %}
   {%- else -%}
   {% assign sheet = "/assets/default.css" | relative_url %}
   {%- endif %}

@@ -1,4 +1,4 @@
-.post-image {
+.article-image {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
   }
 }
 
-.post-title {
+.article-title {
   position: absolute;
   display: inline-block;
   overflow-wrap: break-word;
@@ -38,7 +38,7 @@
   }
 }
 
-.post-date {
+.article-date {
   @include on-phone {
     @include relative-font-size(0.8);
   }
@@ -53,7 +53,7 @@
   padding: ($spacing-unit / 6) ($spacing-unit / 3) ($spacing-unit / 6);
 }
 
-.post-author {
+.article-author {
   display: inline-block;
   @include on-phone {
     @include relative-font-size(0.8);

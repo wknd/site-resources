@@ -6,25 +6,25 @@ origin: "index"
 
   {%- assign name = page.collection -%}
   {%- assign collection = site[name] | sort: 'order' -%}
- <ul class="post-list" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemList">
+ <ul class="article-list" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemList">
 {% for document in collection -%}
 {%- unless page.url == document.url-%}
  {%- assign checkoverview = document.title | truncate: 8, "" | downcase -%}
  {%- assign checkintro = document.title | truncate: 5, "" | downcase -%}
   {%- if checkoverview == "overview" and overview != true %}
-    <li class="post-entry post-newest" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
+    <li class="article-entry article-newest" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
     {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" newest=true %}
     {%- assign overview = true %}
   {%- elsif checkintro == "intro" and intro != true %}
-    <li class="post-entry post-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
+    <li class="article-entry article-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
     {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" featured=true %}
     {%- assign intro = true %}
   {%- else %}
-    <li class="post-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
+    <li class="article-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
     {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" %}
   {%- endif -%}
     <meta itemprop="position" content="{{ document.order }}" />
-    <div class="post-description" itemprop="description">
+    <div class="article-description" itemprop="description">
 {{ document.excerpt }}
     </div>
     </li>

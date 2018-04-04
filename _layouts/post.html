@@ -1,8 +1,8 @@
 ---
 layout: default
-origin: "post"
+origin: "article"
 ---
-<article class="post" itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="article" itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting">
 {%- comment -%} gotta have an author for a post, if not set lets find one {%- endcomment -%}
 {%- if page.author -%}
   {%- if site.data.authors[page.author] -%}
@@ -15,7 +15,7 @@ origin: "post"
 {%- else -%}
   {%- assign author = site.author -%}
 {%- endif %}
-  <header class="post-header">{%- if page.image %}
+  <header class="article-header">{%- if page.image %}
     {% include indeximage.html image=page.image title=page.title author=author date=page.date post=true schema="final" %}
     {%- endif %}
   <link itemprop="mainEntityOfPage" href="{{ site.baseurl }}{{ page.url }}" />

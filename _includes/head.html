@@ -11,13 +11,9 @@
 {%- capture styles -%}
 @import "index-base"
 {%- endcapture -%}
-{%- elsif layout.origin == "post" -%}
+{%- elsif layout.origin == "article" -%}
 {%- capture styles -%}
-@import "post-base"
-{%- endcapture -%}
-{%- elsif layout.origin == "TechArticle" -%}
-{%- capture styles -%}
-@import "techarticle-base"
+@import "article-base"
 {%- endcapture -%}
 {%- elsif layout.origin == "page" -%}
 {%- capture styles -%}

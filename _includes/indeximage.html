@@ -36,7 +36,7 @@
 {%- assign image1200 = imgReversed | replace_first: '.', size1200 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1900 = imgReversed | replace_first: '.', size1900 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
-    <picture class="post-image">
+    <picture class="article-image">
       {%- if include.image %}
       <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}" srcset="
         {{ image320 }} 320w,
@@ -59,21 +59,21 @@
         100vw" 
         {%- endif %} itemprop="image" alt="{{ include.image.alt }}">    
       {% endif %}
-      <h2 class="post-title" itemprop="name{% if include.schema == "final" %} headline{% endif %}">{{ include.title | escape }}</h2>
+      <h2 class="article-title" itemprop="name{% if include.schema == "final" %} headline{% endif %}">{{ include.title | escape }}</h2>
       {% if include.date -%}
-      <time class="post-date" datetime="{{ include.date | date_to_xmlschema }}"{% if include.schema == "final" %} itemprop="datePublished"{% endif %}>
+      <time class="article-date" datetime="{{ include.date | date_to_xmlschema }}"{% if include.schema == "final" %} itemprop="datePublished"{% endif %}>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         {{- include.date | date: date_format -}}
       </time>
       {% endif -%}
       {%- if include.author -%}
         {% if include.author.name %}
-      <span class="post-author"{% if include.schema == "final" %} itemprop="author" itemscope itemtype="http://schema.org/Person"{% endif %}>Written by {% if include.author.page %}<a href="{{ include.author.page }}"{% if include.schema == "final" %} itemprop="url"{% endif %}><span{% if include.schema == "final" %} itemprop="name"{% endif %}>{{ include.author.name }}</span></a>{% else %}<span{% if include.schema == "final" %} itemprop="name"{% endif %}>{{ include.author.name }}</span>{% endif %}</span>
+      <span class="article-author"{% if include.schema == "final" %} itemprop="author" itemscope itemtype="http://schema.org/Person"{% endif %}>Written by {% if include.author.page %}<a href="{{ include.author.page }}"{% if include.schema == "final" %} itemprop="url"{% endif %}><span{% if include.schema == "final" %} itemprop="name"{% endif %}>{{ include.author.name }}</span></a>{% else %}<span{% if include.schema == "final" %} itemprop="name"{% endif %}>{{ include.author.name }}</span>{% endif %}</span>
         {% else %}
-      <span class="post-author"{% if include.schema == "final" %} itemprop="author" itemscope itemtype="http://schema.org/Person"{% endif %}>Written by <span{% if include.schema == "final" %} itemprop="name"{% endif %}>{{ include.author }}</span></span>
+      <span class="article-author"{% if include.schema == "final" %} itemprop="author" itemscope itemtype="http://schema.org/Person"{% endif %}>Written by <span{% if include.schema == "final" %} itemprop="name"{% endif %}>{{ include.author }}</span></span>
         {% endif %}
       {% endif %}
       {%- if include.url %}
-      <a class="post-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
+      <a class="article-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
       {%- endif %}
     </picture>
