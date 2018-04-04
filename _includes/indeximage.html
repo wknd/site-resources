@@ -116,7 +116,7 @@
         {%- if image.license %}
           {%- assign licensename = image.license -%}
           {%- assign license = site.data.licenses[licensename] -%}
-          <br /><small>Image license: 
+          <small> license: 
           {%- if license -%}{%- comment %}found in our license db{% endcomment -%}
             {%- if license.url %} <a rel="license" href="{{ license.url }}">{{ license.name }}</a>
             {%- else %} {{ license.name }}
