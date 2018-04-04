@@ -57,7 +57,7 @@
 {%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1900 = imgReversed | replace_first: '.', size1900 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
     <picture class="article-image">
-      {%- if include.image %}
+      {%- if image %}
       <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}" srcset="
         {{ image320 }} 320w,
         {{ image480 }} 480w,
@@ -77,7 +77,7 @@
         (min-width: {{ site.on-laptop }}px) 33vw,
         (min-width: {{ site.on-tablet }}px) 50vw,
         100vw" 
-        {%- endif %} itemprop="image" alt="{{ include.image.alt }}">    
+        {%- endif %} itemprop="image" alt="{{ image.alt }}">    
       {% endif %}
       <h2 class="article-title" itemprop="name{% if include.schema == "final" %} headline{% endif %}">{{ include.title | escape }}</h2>
       {% if include.date -%}
