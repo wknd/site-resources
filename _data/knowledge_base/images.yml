@@ -3,5 +3,5 @@ pcb-back:
   global: project
   name: "black and white circuit board"
   description: "black and white circuit board without any components visible"
-  licence: "CC0"
+  license: "CC0"
   

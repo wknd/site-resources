@@ -1,0 +1,32 @@
+CC0:
+  short: "CC0"
+  name: "Public Domain"
+  url: "https://creativecommons.org/publicdomain/zero/1.0/"
+CC-BY:
+  shortname: "CC BY"
+  name: "Creative Commons Attribution"
+  url: "https://creativecommons.org/licenses/by/4.0/"
+CC-BY-SA:
+  shortname: "CC BY-SA"
+  name: "Creative Commons Attribution-ShareAlike"
+  url: "https://creativecommons.org/licenses/by-sa/4.0/"
+CC-BY-ND:
+  shortname: "CC BY-ND"
+  name: "Creative Commons Attribution-NoDeivs"
+  url: "https://creativecommons.org/licenses/by-nd/4.0"
+CC-BY-NC:
+  shortname: "CC BY-NC"
+  name: "Creative Commons Attribution-NonCommercial"
+  url: "https://creativecommons.org/licenses/by-nc/4.0"
+CC-BY-NC-SA:
+  shortname: "CC BY-NC-SA"
+  name: "Creative Commons Attribution-NonCommercial-ShareAlike"
+  url: "https://creativecommons.org/licenses/by-nc-sa/4.0"
+CC-BY-NC-ND:
+  shortname: "CC BY-NC-ND"
+  name: "Creative Commons Attribution-NonCommercial-NoDerivs"
+  url: "https://creativecommons.org/licenses/by-nc-nd/4.0"
+MIT:
+  shortname: "MIT"
+  name: "MIT"
+  url: "https://opensource.org/licenses/MIT"  
