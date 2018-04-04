@@ -74,8 +74,8 @@
   100vw
   "
   {%- endif %}
-{%- if include.image.description %}alt="{{ include.image.description }}"{% elsif include.image.name %}alt="{{ include.image.name }}"{% endif -%}
-/>
+{%- if include.image.description %} alt="{{ include.image.description }}"{% elsif include.image.name %} alt="{{ include.image.name }}"{% endif -%}
+ />
   </a>
 {% if include.image.description -%}
   <figcaption>{{ include.image.description }}
