@@ -20,6 +20,13 @@
   margin: 0px;
   list-style: none;
   background-color: $background;
+  img {
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+    flex-grow: 1;
+    height: $index-element-height;
+  }
 }
 
 .article-title {
