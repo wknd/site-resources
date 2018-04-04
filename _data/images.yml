@@ -1,0 +1,24 @@
+cross-street:
+  file: cross-street_francesco.lorenzetti.jpg
+  global: global
+  name: cross-street
+  description: "cyberpunk street view"
+  creator: Francesco lorenzetti
+  creatorurl: https://www.artstation.com/frank_lorenzetti
+  
+android-hunting:
+  file: android-hunting.jpg
+  global: global
+  name: android hunting
+  description: "blade runner inspired android"
+  creator: Toby Lewin
+  creatorurl: http://www.tobylewin.com
+
+hacker-room:
+  file: hacker-room.jpg
+  global: global
+  name: Fallen heroes: the hacker's room
+  description: "messy hacker room, with several large screens"
+  creator: Jose Borges
+  creatorurl: https://www.artstation.com/joseborges
+  
