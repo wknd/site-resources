@@ -100,14 +100,32 @@
       {%- endif %}    
   </figure>
   {% if include.article %}
-    <div class="article-image-info">
-    {%- if image.creator %}
-      {% if image.name %}Image: '{{ image.name }}' by
-      {%- else -%}Image by{% endif %}
-      {%- if image.creatorurl %} <a href="{{ image.creatorurl }}">{{ image.creator }}</a>
-      {%- else %} {{ image.creator }}
-      {%- endif -%}
+    {% if image.description or image.name -%}
+      <div class="article-image-info">
+        {%- if image.name -%} Image '{{ image.name }}'
+        {%- elsif image.description -%} Image '{{ image.description }}' <br />
+        {%- elsif image.creator -%} Image
+        {%- endif -%}
+        {%- if image.creator%}
+          {%- if image.creatorurl %} by <a href="{{ image.creatorurl }}">{{ image.creator }}</a>
+          {%- else %} by {{ image.creator }}
+          {%- endif -%}
+        {%- endif -%}
+        {%- if image.license %}
+          {%- assign licensename = image.license -%}
+          {%- assign license = site.data.licenses[licensename] -%}
+          <br /><small>Image license: 
+          {%- if license -%}{%- comment %}found in our license db{% endcomment -%}
+            {%- if license.url %} <a rel="license" href="{{ license.url }}">{{ license.name }}</a>
+            {%- else %} {{ license.name }}
+            {%- endif -%}
+          {%- elsif image.license.name -%}{%- comment %}not found in our license db, but specified in image{% endcomment -%}
+            {%- if image.license.url %} <a rel="license" href="{{ image.license.url }}">{{ image.license.name }}</a>
+            {%- else %} {{ image.license.name }}
+            {% endif %}
+          {%- else %} {{ image.license }}{%- comment %}not found in our license db only name given{% endcomment -%}
+          {%- endif -%}
+        </small>{%- endif %}
+      </div>
     {%- endif -%}
-    {%- if image.license %} Image license: {{ image.license}}{% endif %}
-  </div>
   {%- endif -%}
