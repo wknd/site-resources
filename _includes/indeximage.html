@@ -2,19 +2,9 @@
 {%- if include.image.file -%}
   {%- assign image = include.image -%}
   {%- if page.collection and page.collection != "posts" -%}
-    {%- assign projectname = site.baseurl | replace: '/', '' -%}
-    {%- if site.baseurl -%}
-      {%- assign project = site.data[projectname] -%}
-    {%- else -%}
-      {%- assign project = site.data -%}
-    {%- endif -%}
-    {%- assign collectionname = page.collection -%}
-    {%- assign collectiondata = project[collectionname] -%}
-    {%- assign image = page.images[name]-%}
     {%- capture imagePath %}collections/{{ page.collection }}/{{ include.title | slugify }}/{{ image.file }}{% endcapture -%}
     {%- assign baseimgPath = site.baseurl -%}
   {%- else -%}
-    {%- assign image = page.image -%}
     {%- assign baseimgPath = site.baseurl -%}
     {%- capture imagePath %}posts/{{ include.date | date: "%Y-%m-%d" }}-{{ include.title | slugify }}/{{ image.file }}{% endcapture -%}
   {%- endif -%}
