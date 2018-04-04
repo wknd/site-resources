@@ -59,7 +59,7 @@
       {%- assign relwidth = include.width | replace: '%','' | plus: 0 %}
       {%- if include.float %}
   sizes="
-  (min-width: {{ site.on-laptop }}px) {% if relwidth >= 60 %}60vw{% else %}{{ relwidth | minus: 4 }}vw{% endif %},
+  (min-width: {{ site.on-laptop }}px) {% if relwidth >= 60 %}63vw{% else %}{{ relwidth | minus: 4 }}vw{% endif %},
   (min-width: {{ site.on-tablet }}px) {% if relwidth >= 45 %}45vw{% else %}{{ relwidth | minus: 4 }}vw{% endif %},
   100vw" {%- else %}
   sizes="
