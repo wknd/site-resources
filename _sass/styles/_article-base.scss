@@ -85,6 +85,7 @@
     background: $background;
     padding: 0px;
     height: auto;
+    width: auto;
     clear: both;
     @include on_phone {
         min-width: 100%;
