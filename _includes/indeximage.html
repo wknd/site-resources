@@ -1,26 +1,45 @@
 {%- comment %} this is the default behaviour if global isn't set {% endcomment -%}
-{%- if page.collection and page.collection != "posts" -%}
-  {%- capture imagePath %}collections/{{ page.collection }}/{{ include.title | slugify }}/{{ include.image.name }}{% endcapture -%}
-  {%- assign baseimgPath = site.baseurl -%}
-{%- else -%}
-  {%- assign baseimgPath = site.baseurl -%}
-  {%- capture imagePath %}posts/{{ include.date | date: "%Y-%m-%d" }}-{{ include.title | slugify }}/{{ include.image.name }}{% endcapture -%}
-{%- endif -%}
-{%- comment %} behaviour if global is specified {% endcomment -%}
-{%- if include.image.global -%}
-  {%- if include.image.global == "global"-%}
-    {%- capture imagePath %}global/{{ include.image.name }}{% endcapture -%}
-    {%- assign baseimgPath = '' -%}
-  {%- elsif include.image.global == "project" -%}
-    {%- capture imagePath %}global/{{ include.image.name }}{% endcapture -%}
+{%- if include.image.file -%}
+  {%- assign image = include.image -%}
+  {%- if page.collection and page.collection != "posts" -%}
+    {%- assign projectname = site.baseurl | replace: '/', '' -%}
+    {%- assign project = site.data[projectname] -%}
+    {%- assign collectionname = page.collection -%}
+    {%- assign collectiondata = project[collectionname] -%}
+    {%- assign image = page.images[name]-%}
+    {%- capture imagePath %}collections/{{ page.collection }}/{{ include.title | slugify }}/{{ image.file }}{% endcapture -%}
     {%- assign baseimgPath = site.baseurl -%}
-  {%- elsif include.image.global == "collection" and page.collection and page.collection != "posts" -%}
-    {%- capture imagePath %}collections/{{ page.collection }}/{{ include.image.name }}{% endcapture -%}
+  {%- else -%}
+    {%- assign image = page.image -%}
     {%- assign baseimgPath = site.baseurl -%}
-  {%- elsif include.image.global != "local" -%}{%- comment %} if its not local by this point, it'll be set to true {% endcomment -%}
-    {%- capture imagePath %}global/{{ include.image.name }}{% endcapture -%}
-    {%- assign baseimgPath = '' -%}
+    {%- capture imagePath %}posts/{{ include.date | date: "%Y-%m-%d" }}-{{ include.title | slugify }}/{{ include.image.name }}{% endcapture -%}
   {%- endif -%}
+{%- else -%}
+  {%- assign name = include.image.name -%}
+  {%- if include.image.global -%}
+    {%- if include.image.global == "global"-%}
+      {%- assign image = site.data.images[name]-%}
+      {%- capture imagePath %}global/{{ image.file }}{% endcapture -%}
+      {%- assign baseimgPath = '' -%}
+    {%- elsif include.image.global == "project" -%}
+      {%- assign projectname = site.baseurl | replace: '/', '' -%}
+      {%- assign project = site.data[projectname] -%}
+      {%- assign image = project.images[name]-%}
+      {%- capture imagePath %}global/{{ image.file }}{% endcapture -%}
+      {%- assign baseimgPath = site.baseurl -%}
+    {%- elsif include.image.global == "collection" and page.collection and page.collection != "posts" -%}
+      {%- assign projectname = site.baseurl | replace: '/', '' -%}
+      {%- assign project = site.data[projectname] -%}
+      {%- assign collectionname = page.collection -%}
+      {%- assign collectiondata = project[collectionname] -%}
+      {%- assign image = collectiondata.images[name]-%}
+      {%- capture imagePath %}collections/{{ page.collection }}/{{ image.file }}{% endcapture -%}
+      {%- assign baseimgPath = site.baseurl -%}
+    {%- elsif include.image.global != "local" -%}{%- comment %} if its not local by this point, it'll be set to true {% endcomment -%}
+      {%- assign image = site.data.images[name]-%}
+      {%- capture imagePath %}global/{{ image.file }}{% endcapture -%}
+      {%- assign baseimgPath = '' -%}
+    {%- endif -%}
 {%- endif -%}
 {%- comment %}liquid is retarded and has a replace, and a replace_first but no replace_last so we'll use some trickery to make it happen{% endcomment -%}
 {%- assign imgReversed = imagePath | split: "" | reverse | join: "" -%}
