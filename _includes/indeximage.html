@@ -99,17 +99,15 @@
       <a class="article-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
       {%- endif %}
       {% if include.article %}
-        {% if image.description %}
-          <figcaption>{{ image.description }}<br />
-        {% else %}
-          <figcaption>
-        {% endif %}
-        {%- if image.creator%}{% if image.name %}'{{ image.name }}' by
-        {%- else -%}Image by{% endif %}
+        <figcaption>
+        {%- if image.creator %}
+          {% if image.name %}Image: '{{ image.name }}' by
+          {%- else -%}Image by{% endif %}
           {%- if image.creatorurl %} <a href="{{ image.creatorurl }}">{{ image.creator }}</a>
           {%- else %} {{ image.creator }}
           {%- endif -%}
         {%- endif -%}
-        {%- if image.licence %} Licence: {{ image.licence}}{% endif %}</figcaption>
+        {%- if image.licence %} Image licence: {{ image.licence}}{% endif %}
+      </figcaption>
       {%- endif -%}
     </figure>
