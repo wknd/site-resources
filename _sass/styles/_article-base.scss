@@ -85,9 +85,9 @@
   }
   
   figcaption {
-    display: inline;
     @include relative-font-size(0.7);
     text-align: center;
+    max-width: 100%;
   }
 
   figure:not(.article-float-img-right, .article-float-img-left) {
