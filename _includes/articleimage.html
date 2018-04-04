@@ -74,8 +74,8 @@
   100vw
   "
   {%- endif %}
-{% if include.alt %} alt="{% if include.image.description %}{{ include.image.description }}{% elsif include.image.name%}{{ include.image.name }}{% endif %}" {% endif -%}
-{%- if include.width -%}{%- unless rel == '%' %}{% if include.height %} max-{% endif %}width="{{ include.width }}" {% endunless -%}{%- endif -%}{%- if include.height %} style="max-height: {{ include.height }};" {% endif %}/>
+{%- if include.image.description %}alt="{{ include.image.description }}"{% elsif include.image.name %}alt="{{ include.image.name }}"{% endif -%}
+{% comment %}{%- if include.width -%}{%- unless rel == '%' %}{% if include.height %} max-{% endif %}width="{{ include.width }}" {% endunless -%}{%- endif -%}{%- if include.height %} style="max-height: {{ include.height }};" {% endif %}{% endcomment %} />
   </a>
 {% if include.image.description -%}
   <figcaption>{{ include.image.description }}
