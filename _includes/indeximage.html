@@ -79,7 +79,7 @@
         (min-width: {{ site.on-laptop }}px) 33vw,
         (min-width: {{ site.on-tablet }}px) 50vw,
         100vw" 
-        {%- endif %} itemprop="image" alt="{{ image.alt }}">    
+        {%- endif %} itemprop="image"{%- if image.description %} alt="{{ image.description }}"{% elsif image.name %} alt="{{ image.name }}"{% endif -%}>    
       {% endif %}
       <h2 class="article-title" itemprop="name{% if include.schema == "final" %} headline{% endif %}">{{ include.title | escape }}</h2>
       {% if include.date -%}
@@ -98,4 +98,18 @@
       {%- if include.url %}
       <a class="article-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
       {%- endif %}
+      {% if include.article %}
+        {% if image.description %}
+          <figcaption>{{ image.description }}<br />
+        {% else %}
+          <figcaption>
+        {% endif %}
+        {%- if image.creator%}{% if image.name %}'{{ image.name }}' by
+        {%- else -%}Image by{% endif %}
+          {%- if image.creatorurl %} <a href="{{ image.creatorurl }}">{{ image.creator }}</a>
+          {%- else %} {{ image.creator }}
+          {%- endif -%}
+        {%- endif -%}
+        {%- if image.licence %} Licence: {{ image.licence}}{% endif %}</figcaption>
+      {%- endif -%}
     </figure>
