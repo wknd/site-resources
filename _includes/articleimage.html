@@ -9,25 +9,25 @@
 
 {%- comment %} this is the default behaviour if global isn't set {% endcomment -%}
 {%- if page.collection and page.collection != "posts" -%}
-  {%- capture imagePath %}collections/{{ page.collection }}/{{ include.title | slugify }}/{{ include.image.name }}{% endcapture -%}
+  {%- capture imagePath %}collections/{{ page.collection }}/{{ include.title | slugify }}/{{ include.image.file }}{% endcapture -%}
   {%- assign baseimgPath = site.baseurl -%}
 {%- else -%}
   {%- assign baseimgPath = site.baseurl -%}
-  {%- capture imagePath %}posts/{{ include.date | date: "%Y-%m-%d" }}-{{ include.title | slugify }}/{{ include.image.name }}{% endcapture -%}
+  {%- capture imagePath %}posts/{{ include.date | date: "%Y-%m-%d" }}-{{ include.title | slugify }}/{{ include.image.file }}{% endcapture -%}
 {%- endif -%}
 {%- comment %} behaviour if global is specified {% endcomment -%}
 {%- if include.image.global -%}
   {%- if include.image.global == "global"-%}
-    {%- capture imagePath %}global/{{ include.image.name }}{% endcapture -%}
+    {%- capture imagePath %}global/{{ include.image.file }}{% endcapture -%}
     {%- assign baseimgPath = '' -%}
   {%- elsif include.image.global == "project" -%}
-    {%- capture imagePath %}global/{{ include.image.name }}{% endcapture -%}
+    {%- capture imagePath %}global/{{ include.image.file }}{% endcapture -%}
     {%- assign baseimgPath = site.baseurl -%}
   {%- elsif include.image.global == "collection" and page.collection and page.collection != "posts" -%}
-    {%- capture imagePath %}collections/{{ page.collection }}/{{ include.image.name }}{% endcapture -%}
+    {%- capture imagePath %}collections/{{ page.collection }}/{{ include.image.file }}{% endcapture -%}
     {%- assign baseimgPath = site.baseurl -%}
   {%- elsif include.image.global != "local" -%}{%- comment %} if its not local by this point, it'll be set to true {% endcomment -%}
-    {%- capture imagePath %}global/{{ include.image.name }}{% endcapture -%}
+    {%- capture imagePath %}global/{{ include.image.file }}{% endcapture -%}
     {%- assign baseimgPath = '' -%}
   {%- endif -%}
 {%- endif -%}
