@@ -149,6 +149,15 @@
     background-color: $background;
     color: $foreground;
     @include relative-font-size(0.7);
+    a { 
+      color: $flash1;
+      text-decoration: none;
+    }
+    a:hover {
+      background-color: $flash1;
+      color: $foreground;
+      text-decoration: underline;
+    }
   }
   
   @include on-tablet {
