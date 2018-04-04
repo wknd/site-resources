@@ -58,7 +58,7 @@
 {%- assign image1200 = imgReversed | replace_first: '.', size1200 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1600 = imgReversed | replace_first: '.', size1600 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
 {%- assign image1900 = imgReversed | replace_first: '.', size1900 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
-    <picture class="article-image">
+    <figure class="article-image">
       {%- if image %}
       <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}" srcset="
         {{ image320 }} 320w,
@@ -72,7 +72,7 @@
         (min-width: {{ site.on-laptop }}px) 66vw,
         (min-width: {{ site.on-tablet }}px) 50vw,
         100vw"
-        {%- elsif include.newest or include.post %}
+        {%- elsif include.newest or include.article %}
         sizes="100vw"
         {%- else %}
         sizes="
@@ -98,4 +98,4 @@
       {%- if include.url %}
       <a class="article-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
       {%- endif %}
-    </picture>
+    </figure>
