@@ -146,6 +146,7 @@
   figcaption {
     height: $spacing-unit;
     width: 100%;
+    background-color: $background;
   }
   
   @include on-tablet {
