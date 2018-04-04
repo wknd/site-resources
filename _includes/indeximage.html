@@ -12,7 +12,7 @@
   {%- else -%}
     {%- assign image = page.image -%}
     {%- assign baseimgPath = site.baseurl -%}
-    {%- capture imagePath %}posts/{{ include.date | date: "%Y-%m-%d" }}-{{ include.title | slugify }}/{{ include.image.name }}{% endcapture -%}
+    {%- capture imagePath %}posts/{{ include.date | date: "%Y-%m-%d" }}-{{ include.title | slugify }}/{{ image.file }}{% endcapture -%}
   {%- endif -%}
 {%- else -%}
   {%- assign name = include.image.name -%}
