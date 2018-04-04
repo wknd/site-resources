@@ -17,13 +17,11 @@
       {%- assign baseimgPath = '' -%}
     {%- elsif include.image.global == "project" -%}
       {%- assign projectname = site.baseurl | replace: '/', '' -%}
-      {{ projectname }}
       {%- if site.baseurl -%}
         {%- assign project = site.data[projectname] -%}
       {%- else -%}
         {%- assign project = site.data -%}
       {%- endif -%}
-       {{ project }}
       {%- assign image = project.images[name]-%}
       {%- capture imagePath %}global/{{ image.file }}{% endcapture -%}
       {%- assign baseimgPath = site.baseurl -%}
