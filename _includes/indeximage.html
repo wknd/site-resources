@@ -60,7 +60,6 @@
 {%- assign image1900 = imgReversed | replace_first: '.', size1900 | split: "" | reverse | join: "" | prepend: '/assets/images/' | prepend: baseimgPath -%}
   <figure class="article-image">
       {%- if image %}
-    {% if include.article %}<div class="article-image-container">{% endif %}
       <img src="{{ baseimgPath }}/assets/images/{{ imagePath }}" srcset="
         {{ image320 }} 320w,
         {{ image480 }} 480w,
@@ -98,18 +97,17 @@
       {% endif %}
       {%- if include.url %}
       <a class="article-click" href="{{ include.url | relative_url }}" itemprop="url"></a>
-      {%- endif %}
-    {% if include.article %}</div>{% endif %}
-    {% if include.article %}
-      <figcaption>
-      {%- if image.creator %}
-        {% if image.name %}Image: '{{ image.name }}' by
-        {%- else -%}Image by{% endif %}
-        {%- if image.creatorurl %} <a href="{{ image.creatorurl }}">{{ image.creator }}</a>
-        {%- else %} {{ image.creator }}
-        {%- endif -%}
-      {%- endif -%}
-      {%- if image.licence %} Image licence: {{ image.licence}}{% endif %}
-    </figcaption>
-    {%- endif -%}
+      {%- endif %}    
   </figure>
+  {% if include.article %}
+    <div class="article-image-info">
+    {%- if image.creator %}
+      {% if image.name %}Image: '{{ image.name }}' by
+      {%- else -%}Image by{% endif %}
+      {%- if image.creatorurl %} <a href="{{ image.creatorurl }}">{{ image.creator }}</a>
+      {%- else %} {{ image.creator }}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if image.licence %} Image licence: {{ image.licence}}{% endif %}
+  </div>
+  {%- endif -%}
