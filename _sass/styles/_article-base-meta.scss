@@ -19,6 +19,7 @@
   min-height: 250px;
   margin: 0px;
   list-style: none;
+  background-color: $background;
 }
 
 .article-title {
@@ -28,7 +29,7 @@
   word-break: break-word;
   word-wrap: break-word;
   max-width: 100%;
-  bottom: 25%;
+  bottom: 0px;
   margin: 0px;
   left: 0px;
   right: 0px;
