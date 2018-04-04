@@ -5,6 +5,7 @@ cross-street:
   description: "cyberpunk street view"
   creator: "Francesco lorenzetti"
   creatorurl: "https://www.artstation.com/frank_lorenzetti"
+  license: permission-francesco-lorenzetti
   
 android-hunting:
   file: "android-hunting.jpg"

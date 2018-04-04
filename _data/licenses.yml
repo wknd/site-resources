@@ -29,4 +29,8 @@ CC-BY-NC-ND:
 MIT:
   shortname: "MIT"
   name: "MIT"
-  url: "https://opensource.org/licenses/MIT"  
+  url: "https://opensource.org/licenses/MIT"
+permission-francesco-lorenzetti:
+  shortname: "special"
+  name: "permission granted by Francesco Lorenzetti"
+  url: "https://secur.ity-pro.be/licenses/FrancescoLorenzetti.html"
