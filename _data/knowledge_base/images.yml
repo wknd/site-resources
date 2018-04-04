@@ -1,7 +1,7 @@
 pcb-back:
-  file: pcb-back-no-components.jpg
+  file: "pcb-back-no-components.jpg"
   global: project
-  name: black and white circuit board
+  name: "black and white circuit board"
   description: "black and white circuit board without any components visible"
-  licence: CC0
+  licence: "CC0"
   
