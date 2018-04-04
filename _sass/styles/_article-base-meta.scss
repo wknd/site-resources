@@ -1,8 +1,14 @@
 .article-image {
-  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 250px;
+  margin: 0px;
+  list-style: none;
+}
+
+.article-image-container {
+  position: relative;
+  min-height: 250px
   margin: 0px;
   list-style: none;
   img {
