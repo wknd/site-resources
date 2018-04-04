@@ -143,6 +143,11 @@
   margin: 0px 0px $spacing-unit / 2;
   width: 100%;
   
+  figcaption {
+    height: $spacing-unit;
+    width: 100%;
+  }
+  
   @include on-tablet {
     .article-image {
       img {
