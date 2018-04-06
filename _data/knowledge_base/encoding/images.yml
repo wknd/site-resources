@@ -1,0 +1,8 @@
+information-system:
+  file: "information-system.png"
+  global: collection
+  name: "information system overview"
+  description: "overview of any data exchange in an information system"
+  creator: "weekend"
+  creatorurl: "https://secur.ity-pro.be"
+  
