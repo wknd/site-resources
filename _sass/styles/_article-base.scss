@@ -68,6 +68,10 @@
       vertical-align: sub;
       @include relative-font-size(0.8);
   }
+  sup {
+      vertical-align: super;
+      @include relative-font-size(0.8);
+  }
   figure {
     display: block;
     box-sizing: border-box;
