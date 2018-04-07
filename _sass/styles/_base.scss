@@ -31,6 +31,15 @@ ul {
   list-style-position: inside;
 }
 
+sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
 .wrapper {
   // spacing of half a unit for small devices on both sides, 1 unit if its big enough
   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
