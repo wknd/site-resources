@@ -167,9 +167,10 @@ for f in $FILES; do
               ln -sr "$PREVNAME" "$NEWNAME"
               # will this link be relative enough? or do I require more magic   
               echo "negative sizeimprovement, linking $NEWNAME to $PREVNAME instead"         
+            else
+              PREVNAME="$NEWNAME"
+              PREVSIZE=$SIZE
             fi
-            PREVNAME="$NEWNAME"
-            PREVSIZE=$SIZE
           fi
         fi
         # for cropped images
@@ -185,10 +186,11 @@ for f in $FILES; do
               rm "$CROPNAME" # delete the shit file
               ln -sr "$PREVCROPNAME" "$CROPNAME"
               echo "negative sizeimprovement with cropping, linking $CROPNAME to $PREVCROPNAME instead"
-              # will this link be relative enough? or do I require more magic            
+              # will this link be relative enough? or do I require more magic
+            else
+              PREVCROPNAME="$CROPNAME"
+              PREVCROPSIZE=$CROPSIZE
             fi
-            PREVCROPNAME="$CROPNAME"
-            PREVCROPSIZE=$CROPSIZE
           elif [ "$width" = "original" ]; then
             # we're not resizing the original, but we do want to compare  size of minified original resolution to the next cropped one
             PREVCROPNAME="$PREVNAME"
