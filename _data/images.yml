@@ -23,3 +23,10 @@ hacker-room:
   creator: "Jose Borges"
   creatorurl: "https://www.artstation.com/joseborges"
   
+scifi-alley:
+  file: "devon_fay_scifi_alley.jpg"
+  global: global
+  name: "Sci-Fi Alleyway"
+  description: "Sci-Fi Alleyway with robot working in a repair shop"
+  creator: "Devon Fay"
+  creatorurl: "https://www.artstation.com/malibubob"
