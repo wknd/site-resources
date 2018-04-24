@@ -75,7 +75,7 @@
   "
   {%- endif %}
 {%- if include.image.description %} alt="{{ include.image.description }}"{% elsif include.image.name %} alt="{{ include.image.name }}"{% endif -%}
-{%- if include.width -%}{%- unless rel == '%' %}{% if include.height %} max-{% endif %}width="{{ include.width }}" {% endunless -%}{%- endif -%}{%- if include.height %} style="max-height: {{ include.height }};" {% endif %} />
+{%- if include.width -%}{%- unless rel == '%' %} {% if include.height %}max-{% endif %}width="{{ include.width }}" {% endunless -%}{%- endif -%}{%- if include.height %} style="max-height: {{ include.height }};" {% endif %} />
   </a>
 {% if include.image.description or include.image.name -%}
   <figcaption>
