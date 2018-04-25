@@ -21,7 +21,7 @@ origin: "index"
 
     <li class="article-entry article-newest" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
     <meta itemprop="position" content="{% increment counter %}" />
-{% include indeximage.html image=post.image url=post.url title=post.title author=author date=post.date newest=true %}
+{% include indeximage.html image=post.head-image url=post.url title=post.title author=author date=post.date newest=true %}
     <div class="article-description" itemprop="description">
 {{ site.posts[0].excerpt }}
     </div>
@@ -43,10 +43,10 @@ origin: "index"
     {% if post.featured == true and featured != true %}
     {% assign featured = true %}
       <li class="article-entry article-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-        {% include indeximage.html image=post.image url=post.url title=post.title author=author date=post.date featured=true %}
+        {% include indeximage.html image=post.head-image url=post.url title=post.title author=author date=post.date featured=true %}
     {% else %}
       <li class="article-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-        {% include indeximage.html image=post.image url=post.url title=post.title author=author date=post.date %}
+        {% include indeximage.html image=post.head-image url=post.url title=post.title author=author date=post.date %}
     {% endif %}
     <meta itemprop="position" content="{% increment counter %}" />
     <div class="article-description" itemprop="description">

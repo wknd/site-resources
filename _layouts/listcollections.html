@@ -15,7 +15,7 @@ origin: "index"
     <li class="article-entry"  itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 {%- capture url -%}{{site.baseurl}}/{{ collection.label }}{% endcapture -%}
     <meta itemprop="position" content="{% increment counter %}" />
-{% include indeximage.html image=indexpage.image url=collection.label title=collection.label %}
+{% include indeximage.html image=indexpage.head-image url=collection.label title=collection.label %}
     <div class="article-description" itemprop="description">
 {{ indexpage.excerpt }}
     </div>

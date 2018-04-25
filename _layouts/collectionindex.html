@@ -13,15 +13,15 @@ origin: "index"
  {%- assign checkintro = document.title | truncate: 5, "" | downcase -%}
   {%- if checkoverview == "overview" and overview != true %}
     <li class="article-entry article-newest" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
-    {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" newest=true %}
+    {% include indeximage.html image=document.head-image url=document.url title=document.title date=document.date schema="final" newest=true %}
     {%- assign overview = true %}
   {%- elsif checkintro == "intro" and intro != true %}
     <li class="article-entry article-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
-    {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" featured=true %}
+    {% include indeximage.html image=document.head-image url=document.url title=document.title date=document.date schema="final" featured=true %}
     {%- assign intro = true %}
   {%- else %}
     <li class="article-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/TechArticle">
-    {% include indeximage.html image=document.image url=document.url title=document.title date=document.date schema="final" %}
+    {% include indeximage.html image=document.head-image url=document.url title=document.title date=document.date schema="final" %}
   {%- endif -%}
     <meta itemprop="position" content="{{ document.order }}" />
     <div class="article-description" itemprop="description">
