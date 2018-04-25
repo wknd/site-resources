@@ -15,7 +15,7 @@ origin: "article"
 {%- else -%}
   {%- assign author = site.author -%}
 {%- endif %}
-  <header class="article-header">{%- if page.image %}
+  <header class="article-header">{%- if page.head-image %}
     {% include indeximage.html image=page.head-image title=page.title author=author date=page.date article=true schema="final" %}
     {%- endif %}
   <link itemprop="mainEntityOfPage" href="{{ site.baseurl }}{{ page.url }}" />
