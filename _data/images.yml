@@ -30,3 +30,11 @@ scifi-alley:
   description: "Sci-Fi Alleyway with robot working in a repair shop"
   creator: "Devon Fay"
   creatorurl: "https://www.artstation.com/malibubob"
+
+ewaste:
+  file: "ewaste.jpg"
+  global: global
+  name: "e-waste-dump"
+  description: "Room filled with e-waste in an abandoned building"
+  creator: "DetroitEXP"
+  creatorurl: "https://www.reddit.com/user/DetroitEXP"
