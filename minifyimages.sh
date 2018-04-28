@@ -15,6 +15,7 @@ SEARCHDIR="/../assets/images-original/" # location of the input images
 OUTPUTDIR="/../assets/images/" # location of the output images
 # use below for testing
 #SEARCHDIR="/../wknd.github.io/assets/images-original/" # location of the input images
+#SEARCHDIR="/../global/" # location of the input images
 #OUTPUTDIR="/../test/" # location of the output images
 
 SEARCHDIR=$(dirname "$0")$SEARCHDIR # make it relative to script location
@@ -94,10 +95,30 @@ for f in $FILES; do
                 unset CROP
                 unset CROPRESIZE
               
+                # potential new width if we scale the height to MAXHEIGHT, its always the same
+                newwidth=$(bc <<< "scale=4;($MAXHEIGHT/$FILEHEIGHT)*$FILEWIDTH")
+                newwidthint=${newwidth%.*}
+                deltaheightcalc=$(bc <<< "scale=4;($FILEHEIGHT/$MAXHEIGHT)*100")
+                DELTAHEIGHT=${deltaheightcalc%.*}
                 #echo "original"
         else
-            DELTAHEIGHT=$((FILEHEIGHT - MAXHEIGHT))
-            DELTAWIDTH=$((FILEWIDTH - width))
+            #DELTAHEIGHT=$((FILEHEIGHT - MAXHEIGHT))
+            #DELTAWIDTH=$((FILEWIDTH - width))
+            # potential new height if we scale the width to $width
+            newheight=$(bc <<< "scale=4;($width/$FILEWIDTH)*$FILEHEIGHT")
+            newheightint=${newheight%.*}
+            deltawidthcalc=$(bc <<< "scale=4;($FILEWIDTH/$width)*100")
+            DELTAWIDTH=${deltawidthcalc%.*}
+            
+            
+            #echo "width: $width -- $width $FILEWIDTH $FILEHEIGHT"
+            #echo "newheight: $newheight"
+            #echo "newheightint: $newheightint"
+            #echo "newwidth: $newwidth"
+            #echo "newwidthint: $newwidthint"
+            #echo "deltawidth: $DELTAWIDTH"
+            #echo "deltaheight: $DELTAHEIGHT"
+            
             #echo ""
             #echo "$f"
             #echo "original: $FILEWIDTH x $FILEHEIGHT"
@@ -105,36 +126,47 @@ for f in $FILES; do
             #echo "w: $DELTAWIDTH"
             #echo "h: $DELTAHEIGHT"
             
-            if [ "$DELTAWIDTH" -gt "$DELTAHEIGHT" ]; then
+            CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"
+            
+            # delta width; delta height; 100 means no change required,
+            #   less than 100 the new image needs to be bigger than the original,
+            #   over 100 it needs to become smaller
+          
+            if [ "$DELTAWIDTH" -lt 100 ] || [ "$DELTAHEIGHT" -lt 100 ]; then
+            #  image is already too small, don't change it.
+              unset RESIZE
+              unset CROP
+              unset CROPRESIZE
+              echo "image is too small to resize"
+            
+            elif [ "$DELTAWIDTH" -gt "$DELTAHEIGHT" ]; then
               # WIDTH needs more changing than height, rescale image based on height then crop to width
             
               if [ "$MAXHEIGHT" -gt "$heightlowerbound" ] && [ "$MAXHEIGHT" -lt "$heightupperbound" ]; then
-                  # new height is within margin, don't change shit
-                  CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"                
+                  # new height is within margin, don't change shit            
                   unset CROPRESIZE
                   #echo "in bounds height"
               else
                   # new width is outside of margin, change its size
-                  CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"
                   CROPRESIZE=( -thumbnail "x$MAXHEIGHT"\> )
-                  #echo "resize height"
+                  #echo "resize height $MAXHEIGHT"
               fi
-              CROP=( -gravity Center -crop "$widthplusmargin"x+0+0 +repage )
+              CROP=( -gravity Center -crop "$width"x+0+0 +repage )
             else
               # HEIGHT needs more changing than width, rescale based on width and maybe don't crop
               if [ "$width" -gt "$widthlowerbound" ] && [ "$width" -lt "$widthupperbound" ]; then
-                  # new width is within margin, don't change shit
-                  CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"                
+                  # new width is within margin, don't change shit       
                   unset CROPRESIZE
                   #echo "in bounds width"
               else
                   # new width is outside of margin, change its size
-                  CROPNAME="$OUTNAME-cropped-$width.$OUTEXT"
                   CROPRESIZE=( -thumbnail "$width"\> )
                   #echo "resize width"
               fi
               CROP=( -gravity Center -crop x"$MAXHEIGHT"+0+0 +repage )
             fi
+            
+            
             if [ "$width" -gt "$widthlowerbound" ] && [ "$width" -lt "$widthupperbound" ]; then
                 # new width is within margin, don't change shit
                 NEWNAME="$OUTNAME-$width.$OUTEXT"                
@@ -146,11 +178,20 @@ for f in $FILES; do
                 RESIZE=( -thumbnail "$width"\> )
                 #echo "resize"
             fi
+            
         fi
+        
+        
+        
         # for resized images
         if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ] || [ ! -e "$NEWNAME" ]; then
+          if [ -e "$NEWNAME" ]; then
+            rm "$NEWNAME"
+            # if its not forced, rm that file cuz if its a symlink it might do weirdo things
+          fi
           if [ "$OUTFILE" != "$OUTPUTDIR${LOGO#$SEARCHDIR}" ]; then
             # don't resize logo to weirdo widths
+            #echo "resize= ${RESIZE[@]}"
             convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${RESIZE[@]}" -unsharp 0.25x0.08+8.3+0.045 -dither None -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "$NEWNAME"
             echo minified file "$NEWNAME"
           elif [ "$width" = "original" ]; then
@@ -159,8 +200,10 @@ for f in $FILES; do
             echo "converting logo $NEWNAME"
           fi
           if [ "$OUTFILE" != "$OUTPUTDIR${LOGO#$SEARCHDIR}" ] || [ "$width" = "original" ]; then
+            # if its not a logo, or its width original (so for each size of every image and for size original for logo)
             SIZE=$(stat -c%s "$NEWNAME")
             #echo "size: $SIZE"
+            #echo "prevsize: $PREVSIZE"
             if (( SIZE >= PREVSIZE )); then
               # oh shit this new conversion is actually worse than the previous one! UNDO IT!
               rm "$NEWNAME" # delete the shit file
@@ -175,6 +218,10 @@ for f in $FILES; do
         fi
         # for cropped images
         if [ "$1" = "flush" ] || [ "$1" = "rebuild" ] || [ "$1" = "force" ] || [ ! -e "$CROPNAME" ]; then
+          if [ -e "$CROPNAME" ]; then
+            rm "$CROPNAME"
+            # if its not forced, rm that file cuz if its a symlink it might do weirdo things
+          fi
           if [ "$OUTFILE" != "$OUTPUTDIR${LOGO#$SEARCHDIR}" ] && [ "$width" != "original" ]; then
             # if its not a logo and not in original resolution, do the magic
             convert "$f" -strip -sampling-factor 4:2:0 -filter Triangle -define filter:support=2 "${CROPRESIZE[@]}" -unsharp 0.25x0.25+8+0.065 -dither None -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB "${CROP[@]}" "$CROPNAME"
