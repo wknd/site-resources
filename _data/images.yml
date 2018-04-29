@@ -40,7 +40,7 @@ ewaste:
   creatorurl: "https://www.reddit.com/user/DetroitEXP"
   
 keyboard-usb:
-  file: "keyboard-usb.png"
+  file: "keyboard-usb.jpg"
   global: global
   name: "keyboard-usb"
   description: "image of keyboard with usb logo overlay"
