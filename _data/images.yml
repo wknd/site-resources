@@ -38,3 +38,12 @@ ewaste:
   description: "Room filled with e-waste in an abandoned building"
   creator: "DetroitEXP"
   creatorurl: "https://www.reddit.com/user/DetroitEXP"
+  
+keyboard-usb:
+  file: "keyboard-usb.png"
+  global: global
+  name: "keyboard-usb"
+  description: "image of keyboard with usb logo overlay"
+  creator: "Josepanguep4(original) and weekend(modification)"
+  creatorurl: "https://commons.wikimedia.org/wiki/File:Keyboard_flat_button_18287_2560x1440.jpg"
+  license: CC-BY-SA
