@@ -36,7 +36,7 @@ ewaste:
   global: global
   name: "e-waste-dump"
   description: "Room filled with e-waste in an abandoned building"
-  creator: "DetroitEXP"
+  creator: "tonybologna_exp"
   creatorurl: "https://www.instagram.com/tonybologna_exp/"
   
 keyboard-usb:
