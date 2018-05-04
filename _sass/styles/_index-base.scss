@@ -3,6 +3,13 @@
     background-color: transparentize($background-light, $transparent);
     padding: $spacing-unit / 2;
 }
+.pagination {
+  background-color: $background-light;
+  span {
+    
+  }
+}
+
 .article-list {
   list-style: none;
   display: grid;
