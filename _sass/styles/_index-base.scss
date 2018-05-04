@@ -20,7 +20,7 @@
   background-color: $background;
   color: $foreground;
   text-align: center;
-  height: (2 * $spacing-unit);
+  padding: ($spacing-unit / 2);
   a {
     color: $flash1;
     text-decoration: none;
