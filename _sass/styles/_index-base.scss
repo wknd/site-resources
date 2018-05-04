@@ -6,6 +6,15 @@
 .pagination {
   background-color: $background-light;
   text-align: center;
+  a {
+    color: $flash1;
+    text-decoration: none;
+  }
+  a:hover {
+    background-color: $flash1;
+    color: $foreground;
+    text-decoration: underline;
+  }
   span {
     
   }
