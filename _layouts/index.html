@@ -1,0 +1,85 @@
+---
+layout: default
+origin: "index"
+---
+<div class="home">
+  {{ content }}
+  <ul class="article-list" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemList">
+
+{%- assign post = paginator.posts[0] -%}
+{%- if post.author -%}
+  {%- if site.data.authors[post.author] -%}
+    {%- assign author = site.data.authors[post.author] -%}
+  {%- else -%}
+    {%- assign author = post.author -%}
+  {%- endif -%}
+{%- elsif site.data.authors[site.author] -%}
+  {%- assign author = site.data.authors[site.author] -%}
+{%- else -%}
+  {%- assign author = site.author -%}
+{%- endif -%}
+
+    <li class="article-entry article-newest" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <meta itemprop="position" content="{% increment counter %}" />
+{% include indeximage.html image=post.head-image url=post.url title=post.title author=author date=post.date newest=true %}
+    <div class="article-description" itemprop="description">
+{{ post.excerpt }}
+    </div>
+</li>
+    {% for post in paginator.posts offset:1 %}
+
+{%- if post.author -%}
+  {%- if site.data.authors[post.author] -%}
+    {%- assign author = site.data.authors[post.author] -%}
+  {%- else -%}
+    {%- assign author = post.author -%}
+  {%- endif -%}
+{%- elsif site.data.authors[site.author] -%}
+  {%- assign author = site.data.authors[site.author] -%}
+{%- else -%}
+  {%- assign author = site.author -%}
+{%- endif -%}
+
+    {% if post.featured == true and featured != true %}
+    {% assign featured = true %}
+      <li class="article-entry article-featured" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        {% include indeximage.html image=post.head-image url=post.url title=post.title author=author date=post.date featured=true %}
+    {% else %}
+      <li class="article-entry" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        {% include indeximage.html image=post.head-image url=post.url title=post.title author=author date=post.date %}
+    {% endif %}
+    <meta itemprop="position" content="{% increment counter %}" />
+    <div class="article-description" itemprop="description">
+{{ post.excerpt }}
+    </div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- Pagination links -->
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+  {% else %}
+    <span>&laquo; Prev</span>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <em>{{ page }}</em>
+    {% elsif page == 1 %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+    {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+  {% else %}
+    <span>Next &raquo;</span>
+  {% endif %}
+</div>
+{% endif %}
