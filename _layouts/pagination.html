@@ -6,7 +6,7 @@ origin: "index"
   {{ content }}
   <ul class="article-list" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemList">
 
-{%- assign post = site.posts[0] -%}
+{%- assign post = paginator.posts[0] -%}
 {%- if post.author -%}
   {%- if site.data.authors[post.author] -%}
     {%- assign author = site.data.authors[post.author] -%}
@@ -26,7 +26,7 @@ origin: "index"
 {{ post.excerpt }}
     </div>
 </li>
-    {% for post in site.posts offset:1 %}
+    {% for post in paginator.posts offset:1 %}
 
 {%- if post.author -%}
   {%- if site.data.authors[post.author] -%}
@@ -56,3 +56,30 @@ origin: "index"
     {% endfor %}
   </ul>
 </div>
+
+<!-- Pagination links -->
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+  {% else %}
+    <span>&laquo; Prev</span>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <em>{{ page }}</em>
+    {% elsif page == 1 %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+    {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+  {% else %}
+    <span>Next &raquo;</span>
+  {% endif %}
+</div>
+{% endif %}
