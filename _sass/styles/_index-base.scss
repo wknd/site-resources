@@ -20,7 +20,7 @@
   background-color: $background;
   color: $foreground;
   text-align: center;
-  height: $spacing-unit;
+  height: (2 * $spacing-unit);
   a {
     color: $flash1;
     text-decoration: none;
