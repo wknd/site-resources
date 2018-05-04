@@ -8,9 +8,11 @@
   color: $foreground;
   text-align: center;
   a {
-    margin: ($spacing-unit / 2);
     color: $flash1;
     text-decoration: none;
+    &:not(:last-child) {
+      margin-right: ($spacing-unit / 2);
+    }
   }
   a:hover {
     background-color: $flash1;
