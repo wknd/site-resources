@@ -79,7 +79,7 @@ origin: "index"
   {% if paginator.next_page %}
     <a id="nextpage" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
   {% else %}
-    <span id="prevnext" >Next &raquo;</span>
+    <span id="nextpage" >Next &raquo;</span>
   {% endif %}
 </div>
 {% endif %}
