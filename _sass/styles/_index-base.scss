@@ -3,6 +3,17 @@
     background-color: transparentize($background-light, $transparent);
     padding: $spacing-unit / 2;
 }
+
+
+#prevpage {
+  margin-right: ($spacing-unit / 2);
+}
+#nextpage {
+  margin-left: ($spacing-unit / 2);
+}
+#currentpage {
+  margin-right: ($spacing-unit / 4);
+}
 .pagination {
   background-color: $background;
   color: $foreground;
@@ -11,7 +22,7 @@
     color: $flash1;
     text-decoration: none;
     &:not(:last-child) {
-      margin-right: ($spacing-unit / 2);
+      margin-right: ($spacing-unit / 4);
     }
   }
   a:hover {
