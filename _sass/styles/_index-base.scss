@@ -8,6 +8,7 @@
   color: $foreground;
   text-align: center;
   a {
+    margin: ($spacing-unit / 2);
     color: $flash1;
     text-decoration: none;
   }
