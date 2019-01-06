@@ -69,6 +69,10 @@
     border-left: 1px solid $flash1;
   }
   
+  tr {
+      border: 1px solid $flash1;
+  }
+  
   th:empty {
       border: 0;
   }
