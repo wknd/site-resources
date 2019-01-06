@@ -77,6 +77,13 @@
       border: 0;
   }
   
+  th:blank {
+      border: 0;
+  }
+  
+  th:-moz-only-whitespace {
+      border: 0;
+  }
   
   table, thead {
     empty-cells: hide;
