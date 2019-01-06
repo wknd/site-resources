@@ -68,6 +68,13 @@
     padding: 0 ($spacing-unit / 4);
   }
   
+  table {
+    border: 1px solid $flash1;
+  }
+  table {
+    border-collapse: collapse;
+  }
+
   figure {
     display: block;
     box-sizing: border-box;
