@@ -64,12 +64,10 @@
     @include relative-font-size(1.2);
   }
   
-  table, td, th {
-    border: 1px solid $flash1;
+  td {
+    padding: ($spacing-unit / 4) 0;
   }
-  table, td, th {
-    border-collapse: collapse;
-  }
+  
 
   figure {
     display: block;
