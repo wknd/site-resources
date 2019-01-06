@@ -64,15 +64,13 @@
     @include relative-font-size(1.2);
   }
   
-  td, th {
+  td, th, tr {
     padding: 0 ($spacing-unit / 4);
+    border: 1px solid $flash1;
   }
   
   table, thead {
     empty-cells: hide;
-    border: 1px solid $flash1;
-  }
-  td {
     border: 1px solid $flash1;
   }
   
