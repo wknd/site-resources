@@ -69,9 +69,10 @@
   }
   
   table, thead {
+    empty-cells: hide;
     border: 1px solid $flash1;
   }
-  tr, td {
+  td {
     border: 1px solid $flash1;
   }
   
