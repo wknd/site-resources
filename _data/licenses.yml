@@ -34,3 +34,7 @@ permission-francesco-lorenzetti:
   shortname: "special"
   name: "artists permission"
   url: "https://secur.ity-pro.be/licenses/FrancescoLorenzetti.html"
+permission-angelique-shelley:
+  shortname: "special"
+  name: "artists permission"
+  url: "https://secur.ity-pro.be/licenses/AngeliqueShelley.html"
